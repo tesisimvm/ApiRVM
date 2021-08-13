@@ -10,13 +10,13 @@ namespace ApiRVM2019.Entities
     {
         [Key]
         public int IDReclamo { get; set; }
-        public string fecha { get; set; } //date
+        public DateTime Fecha { get; set; } //date
         //public by foto { get; set; }
         public string Hora { get; set; } //string
-        public string Ubicacion { get; set; }
-        public int ID_Sesion { get; set; }
-        public int ID_TipoReclamo { get; set; }
-        public int ID_Estado { get; set; }
-        public int ID_DetalleReclamo { get; set; }
+        public int Ubicacion { get; set; }
+    //    public int ID_Sesion { get; set; }
+    //    public int ID_TipoReclamo { get; set; }
+    //    public int ID_Estado { get; set; }
+    //    public int ID_DetalleReclamo { get; set; }
     }
 }

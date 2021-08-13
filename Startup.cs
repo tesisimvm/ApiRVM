@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ApiRVM2019.Contexts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -29,7 +30,29 @@ namespace ApiRVM2019
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnectionString")));
-            services.AddControllers();
+            //services.AddControllers();
+            services.AddControllers()
+               .ConfigureApiBehaviorOptions(options =>
+               {
+                   options.SuppressConsumesConstraintForFormFileParameters = true;
+                   options.SuppressInferBindingSourcesForParameters = true;
+                   options.SuppressModelStateInvalidFilter = true;
+                   options.SuppressMapClientErrors = true;
+                   options.ClientErrorMapping[StatusCodes.Status404NotFound].Link = "https://httpstatuses.com/404";
+               });
+            //services.AddApplicationInsightsTelemetry(Configuration);
+
+            services.AddMvc();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("All",
+                builder =>
+                {
+                    builder.WithOrigins("*")
+                                     .AllowAnyHeader()
+                                      .AllowAnyMethod();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +66,12 @@ namespace ApiRVM2019
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors(
+                x => x
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            );
 
             app.UseAuthorization();
 

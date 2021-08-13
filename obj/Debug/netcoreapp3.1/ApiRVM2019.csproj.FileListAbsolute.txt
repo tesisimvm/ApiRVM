@@ -2,7 +2,6 @@ C:\Users\PC - OMAR\Desktop\ApiRVM2019\bin\Debug\netcoreapp3.1\appsettings.Develo
 C:\Users\PC - OMAR\Desktop\ApiRVM2019\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\PC - OMAR\Desktop\ApiRVM2019\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 C:\Users\PC - OMAR\Desktop\ApiRVM2019\bin\Debug\netcoreapp3.1\ApiRVM2019.exe
-C:\Users\PC - OMAR\Desktop\ApiRVM2019\obj\Debug\netcoreapp3.1\ApiRVM2019.csprojAssemblyReference.cache
 C:\Users\PC - OMAR\Desktop\ApiRVM2019\obj\Debug\netcoreapp3.1\ApiRVM2019.AssemblyInfoInputs.cache
 C:\Users\PC - OMAR\Desktop\ApiRVM2019\obj\Debug\netcoreapp3.1\ApiRVM2019.AssemblyInfo.cs
 C:\Users\PC - OMAR\Desktop\ApiRVM2019\obj\Debug\netcoreapp3.1\ApiRVM2019.RazorTargetAssemblyInfo.cache
@@ -59,3 +58,4 @@ C:\Users\PC - OMAR\Desktop\ApiRVM2019\obj\Debug\netcoreapp3.1\ApiRVM2019.MvcAppl
 C:\Users\PC - OMAR\Desktop\ApiRVM2019\obj\Debug\netcoreapp3.1\ApiRVM2019.dll
 C:\Users\PC - OMAR\Desktop\ApiRVM2019\obj\Debug\netcoreapp3.1\ApiRVM2019.pdb
 C:\Users\PC - OMAR\Desktop\ApiRVM2019\obj\Debug\netcoreapp3.1\ApiRVM2019.genruntimeconfig.cache
+C:\Users\PC - OMAR\Desktop\ApiRVM2019\obj\Debug\netcoreapp3.1\ApiRVM2019.csprojAssemblyReference.cache
