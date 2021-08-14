@@ -35,7 +35,8 @@ namespace ApiRVM2019.Controllers
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            return "value";
+           var tipoestado=context.TipoEstado.FirstOrDefault(r=> r.IDTipoEstado==id);
+            //return tipoestado;
         }
 
         // POST api/<TpoEstadoController>
