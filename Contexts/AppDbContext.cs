@@ -16,5 +16,6 @@ namespace ApiRVM2019.Contexts
 
         //especificacion tablas
         public DbSet<Reclamo>Reclamo{ get; set; }
+        public DbSet<Sesion> Sesion { get; set; }
     }
 }
