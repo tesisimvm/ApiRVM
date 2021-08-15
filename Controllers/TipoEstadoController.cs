@@ -57,20 +57,52 @@ namespace ApiRVM2019.Controllers
 
         // POST api/<TpoEstadoController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult Post([FromBody] TipoEstado tipoEstado)
         {
+            try
+            {
+                context.TipoEstado.Add(tipoEstado);
+                context.SaveChanges();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
         }
 
         // PUT api/<TpoEstadoController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public ActionResult Put(int id, [FromBody] TipoEstado tipoEstado)
         {
+            if(tipoEstado.IDTipoEstado==id)
+            {
+                context.Entry(tipoEstado).State = EntityState.Modified;
+                context.SaveChanges();
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
-
+         
         // DELETE api/<TpoEstadoController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
+            var _tipoEstado = context.TipoEstado.FirstOrDefault(tipoestado => tipoestado.IDTipoEstado == id);
+
+            if(_tipoEstado!=null)
+            {
+                context.TipoEstado.Remove(_tipoEstado);
+                context.SaveChanges();
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
     }
 }
