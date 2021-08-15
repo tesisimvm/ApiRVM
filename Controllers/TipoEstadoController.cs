@@ -26,17 +26,33 @@ namespace ApiRVM2019.Controllers
         }
         // GET: api/<TpoEstadoController>
         [HttpGet]
-        public IEnumerable<TipoEstado> Get()
+        public IActionResult GetTipoEstados()
         {
-            return context.TipoEstado.ToList();
+            var _tipoestados = from TipoEstado in context.TipoEstado
+                                          select new
+                                          {
+                                              NombreTipoEstado=TipoEstado.nombre
+                                          };
+            if(_tipoestados==null)
+            {
+                return NotFound();
+            }
+
+            return Ok(_tipoestados);
         }
 
         // GET api/<TpoEstadoController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<ActionResult<TipoEstado>> GetTipoEstado(int id)
         {
-           var tipoestado=context.TipoEstado.FirstOrDefault(r=> r.IDTipoEstado==id);
-            //return tipoestado;
+            var tipoestado= await context.TipoEstado.FindAsync(id) ;
+
+            if(tipoestado==null)
+            {
+                return NotFound();
+            }
+
+            return tipoestado;
         }
 
         // POST api/<TpoEstadoController>

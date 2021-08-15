@@ -24,16 +24,34 @@ namespace ApiRVM2019.Controllers
         }
         // GET: api/<EstadoController>
         [HttpGet]
-        public IEnumerable<Estado> Get()
+        public IActionResult Get()
         {
-            return context.Estado.ToList();
+            var _estado = from Estado in context.Estado
+                          join TipoEstado in context.TipoEstado on Estado.ID_TipoEstado equals TipoEstado.IDTipoEstado
+                          select new { 
+                                              tipoEstadoNombre=TipoEstado.nombre, 
+                                              estadoNombre=Estado.Nombre 
+                                            };
+            if(_estado==null)
+            {
+                return NotFound();
+            }
+
+            return Ok(_estado);
         }
 
         // GET api/<EstadoController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<ActionResult<Estado>> GetEstado(int id)
         {
-            return "value";
+            var _estado = await context.Estado.FindAsync(id);
+
+            if (_estado == null)
+            {
+                return NotFound();
+            }
+
+            return _estado;
         }
 
         // POST api/<EstadoController>
