@@ -48,6 +48,6 @@ y LISTO!!!
 
 ## Autores ✒️
 
-* **Cervera Nicolás** - *Programador principal (Backend - Frontend)* - [NicolasCervera](https://github.com/NicolasCervera)
-* **D'andrea Fabián Omar** - *Programador principal (Backend - Frontend)* - [omard97](https://github.com/omard97)
+* **Cervera Emilio Nicolás** - *Programador principal (Backend - Frontend)* - [NicolasCervera](https://github.com/NicolasCervera)
+* **D'andrea Omar** - *Programador principal (Backend - Frontend)* - [omard97](https://github.com/omard97)
 * **Ferri Javier** - *Programador principal (Backend - Frontend)* - [JaviFerri7](https://github.com/JaviFerri7)
