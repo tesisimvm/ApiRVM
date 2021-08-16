@@ -70,8 +70,18 @@ namespace ApiRVM2019.Controllers
 
 		// PUT api/<UsuarioController>/5
 		[HttpPut("{id}")]
-		public void Put(int id, [FromBody] string value)
+		public ActionResult Put(int id, [FromBody] Usuario usuario)
 		{
+			if (usuario.IDUsuario == id)
+			{
+				context.Entry(usuario).State = EntityState.Modified;
+				context.SaveChanges();
+				return Ok();
+			}
+			else
+			{
+				return BadRequest();
+			}
 		}
 
 		// DELETE api/<UsuarioController>/5
