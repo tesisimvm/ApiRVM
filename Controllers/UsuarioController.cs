@@ -40,15 +40,32 @@ namespace ApiRVM2019.Controllers
 
 		// GET api/<UsuarioController>/5
 		[HttpGet("{id}")]
-		public string Get(int id)
+		public async Task<ActionResult<Usuario>> GetUsuario(int id)
 		{
-			return "value";
+			var _usuario = await context.Usuario.FindAsync(id);
+
+			if (_usuario == null)
+			{
+				return NotFound();
+			}
+
+			return _usuario;
 		}
 
 		// POST api/<UsuarioController>
 		[HttpPost]
-		public void Post([FromBody] string value)
+		public ActionResult Post([FromBody] Usuario usuario)
 		{
+			try
+			{
+				context.Usuario.Add(usuario);
+				context.SaveChanges();
+				return Ok();
+			}
+			catch (Exception ex)
+			{
+				return BadRequest();
+			}
 		}
 
 		// PUT api/<UsuarioController>/5
