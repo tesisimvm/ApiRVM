@@ -1,4 +1,4 @@
-# API para teesis RVM
+# API para tesis APP RVM
 
 _Esta API Restful fué creada con la finalidad para darle soporte al backend de nuestra aplicación RVM_
 
