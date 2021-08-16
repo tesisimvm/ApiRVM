@@ -15,51 +15,51 @@ namespace ApiRVM2019.Controllers
 	[EnableCors("All")]
 	[Route("[controller]")]
 	[ApiController]
-	public class UsuarioController : ControllerBase
+	public class TipoReclamoController : ControllerBase
 	{
 		private readonly AppDbContext context;
-
-		public UsuarioController(AppDbContext context)
+		public TipoReclamoController(AppDbContext context)
 		{
 			this.context = context;
 		}
 
-		// GET: api/<UsuarioController>
+		// GET: api/<TipoReclamoController>
+
 		[HttpGet]
 		public IActionResult Get()
 		{
-			//Agregar a la consulta la parte del inner join cuando este lista la parte de Perfil y Estado
-			var _Usuario = from Usuario in context.Usuario
-						   select Usuario;
+			var _TipoR = from TipoReclamo in context.TipoReclamo
+						   select TipoReclamo;
 
-			if (_Usuario == null)
+			if (_TipoR == null)
 			{
 				return NotFound();
 			}
-			return Ok (_Usuario);
+			return Ok(_TipoR);
+			
 		}
 
-		// GET api/<UsuarioController>/5
+		// GET api/<TipoReclamoController>/5
 		[HttpGet("{id}")]
-		public async Task<ActionResult<Usuario>> GetUsuario(int id)
+		public async Task<ActionResult<TipoReclamo>> GetTipoReclamo(int id)
 		{
-			var _usuario = await context.Usuario.FindAsync(id);
+			var _TipoR = await context.TipoReclamo.FindAsync(id);
 
-			if (_usuario == null)
+			if (_TipoR == null)
 			{
 				return NotFound();
 			}
 
-			return _usuario;
+			return _TipoR;
 		}
 
-		// POST api/<UsuarioController>
+		// POST api/<TipoReclamoController>
 		[HttpPost]
-		public ActionResult Post([FromBody] Usuario usuario)
+		public ActionResult Post([FromBody] TipoReclamo TipoR)
 		{
 			try
 			{
-				context.Usuario.Add(usuario);
+				context.TipoReclamo.Add(TipoR);
 				context.SaveChanges();
 				return Ok();
 			}
@@ -68,14 +68,13 @@ namespace ApiRVM2019.Controllers
 				return BadRequest();
 			}
 		}
-
-		// PUT api/<UsuarioController>/5
+		// PUT api/<TipoReclamoController>/5
 		[HttpPut("{id}")]
-		public ActionResult Put(int id, [FromBody] Usuario usuario)
+		public ActionResult Put(int id, [FromBody] TipoReclamo TipoR)
 		{
-			if (usuario.IDUsuario == id)
+			if (TipoR.IDTipoReclamo == id)
 			{
-				context.Entry(usuario).State = EntityState.Modified;
+				context.Entry(TipoR).State = EntityState.Modified;
 				context.SaveChanges();
 				return Ok();
 			}
@@ -85,7 +84,8 @@ namespace ApiRVM2019.Controllers
 			}
 		}
 
-		// DELETE api/<UsuarioController>/5
+
+		// DELETE api/<TipoReclamoController>/5
 		[HttpDelete("{id}")]
 		public void Delete(int id)
 		{
