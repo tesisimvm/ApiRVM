@@ -19,5 +19,6 @@ namespace ApiRVM2019.Contexts
         public DbSet<TipoEstado>TipoEstado{ get; set; }
         public DbSet<Estado>Estado{ get; set; }
         public DbSet<Sesion> Sesion { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
     }
 }
