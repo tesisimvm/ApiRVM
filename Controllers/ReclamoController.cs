@@ -28,7 +28,7 @@ namespace ApiRVM2019.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var _Reclamo = from Reclamo in context.Reclamo
+            var _reclamo = from Reclamo in context.Reclamo
                            join Estado in context.Estado on Reclamo.ID_Estado equals Estado.IDEstado
                            join TipoReclamo in context.TipoReclamo on Reclamo.ID_TipoReclamo equals TipoReclamo.IDTipoReclamo
                            join Sesion in context.Sesion on Reclamo.ID_Sesion equals Sesion.IDSesion
@@ -46,28 +46,29 @@ namespace ApiRVM2019.Controllers
                                CelularUsuario = Usuario.Celular,
                                Nick = Usuario.Nick,
                                CorreoUsuario = Usuario.Correo,
+                               horaSesion=Sesion.HoraInicio
                            };
 
-            if (_Reclamo == null)
+            if (_reclamo == null)
             {
                 return NotFound();
             }
 
-            return Ok(_Reclamo);
+            return Ok(_reclamo);
         }
 
         // GET api/<ReclamoController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Reclamo>> GetReclamo(int id)
         {
-            var _Reclamo = await context.Reclamo.FindAsync(id);
+            var _reclamo = await context.Reclamo.FindAsync(id);
 
-            if (_Reclamo == null)
+            if (_reclamo == null)
             {
                 return NotFound();
             }
 
-            return _Reclamo;
+            return _reclamo;
         }
 
         // POST api/<ReclamoController>

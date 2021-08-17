@@ -11,7 +11,7 @@ namespace ApiRVM2019.Entities
         [Key]
         public int IDReclamo { get; set; }
         public DateTime Fecha { get; set; } 
-        //public int Foto { get; set; }
+        //public byte Foto { get; set; }
         public TimeSpan Hora { get; set; } 
         public int ID_Sesion { get; set; }
         public int ID_TipoReclamo { get; set; }
