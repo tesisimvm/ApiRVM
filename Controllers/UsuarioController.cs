@@ -34,9 +34,9 @@ namespace ApiRVM2019.Controllers
 						   join Perfil in context.Perfil on Usuario.ID_Perfil equals Perfil.IDPerfil
 						   select new
 						   {
-							   nombrePerfil = Perfil.Nick,
+							   nombrePerfil = Perfil.Nombre,
 							   nombreEstado = Estado.Nombre,
-							   
+							   nombreUsuario= Usuario.Nick
 						   };
 
 			

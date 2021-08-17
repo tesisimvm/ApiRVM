@@ -13,7 +13,6 @@ namespace ApiRVM2019.Entities
         public string Descripcion { get; set; }
         public string Direccion { get; set; }
         public int Altura { get; set; }
-        
         public int ID_ReclamoAmbiental { get; set; }
         public int ID_Vehiculo { get; set; }
     }

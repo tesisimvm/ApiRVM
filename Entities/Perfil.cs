@@ -10,7 +10,7 @@ namespace ApiRVM2019.Entities
 	{
 		[Key]
 		public int IDPerfil { get; set; }
-		public string Nick { get; set; }
+		public string Nombre { get; set; }
 
 	}
 }

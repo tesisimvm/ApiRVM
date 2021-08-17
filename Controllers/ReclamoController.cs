@@ -28,7 +28,6 @@ namespace ApiRVM2019.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            //Agregar a la consulta la parte del inner join cuando este lista la parte de Perfil y Estado
             var _Reclamo = from Reclamo in context.Reclamo
                            join Estado in context.Estado on Reclamo.ID_Estado equals Estado.IDEstado
                            join TipoReclamo in context.TipoReclamo on Reclamo.ID_TipoReclamo equals TipoReclamo.IDTipoReclamo
@@ -37,7 +36,6 @@ namespace ApiRVM2019.Controllers
                            join Usuario in context.Usuario on Sesion.ID_Usuario equals Usuario.IDUsuario
                            select new
                            {
-                               IDReclamo = Reclamo.IDReclamo,
                                FechaR = Reclamo.Fecha,
                                HoraR = Reclamo.Hora,
                                EstadoR = Estado.Nombre,
@@ -46,7 +44,7 @@ namespace ApiRVM2019.Controllers
                                TipoReclamo = TipoReclamo.Nombre,
                                DNIUsuario = Usuario.DNI,
                                CelularUsuario = Usuario.Celular,
-                               Nick = Usuario.User,
+                               Nick = Usuario.Nick,
                                CorreoUsuario = Usuario.Correo,
                            };
 
@@ -54,6 +52,7 @@ namespace ApiRVM2019.Controllers
             {
                 return NotFound();
             }
+
             return Ok(_Reclamo);
         }
 
