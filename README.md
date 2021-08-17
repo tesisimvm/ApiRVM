@@ -54,6 +54,6 @@ y LISTO!!!
 
 ### Cadenas de conexión ⛓️
 
-* **Conexion Nico: Data Source=LENOVO-NICO\\SQLEXPRESS
-* **Conexion Javi: Data Source=DESKTOP-0V6LO4J
-* **Conexion Omar: Data Source=PCOMAR\\SQLOMAR
+* Conexion Nico: Data Source=LENOVO-NICO\\SQLEXPRESS
+* Conexion Javi: Data Source=DESKTOP-0V6LO4J
+* Conexion Omar: Data Source=PCOMAR\\SQLOMAR
