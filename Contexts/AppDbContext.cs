@@ -22,6 +22,10 @@ namespace ApiRVM2019.Contexts
         public DbSet<Usuario> Usuario { get; set; }
         public DbSet<TipoReclamo> TipoReclamo { get; set; }
         public DbSet<Perfil> Perfil { get; set; }
+        public DbSet<DetalleReclamo> DetalleReclamo { get; set;}
+        public DbSet<ReclamoAmbiental> ReclamoAmbiental { get; set; }
+
+        public DbSet<VehiculoXDetalleReclamo> VehiculoXDetalleReclamo { get; set; }
 
     }
 }

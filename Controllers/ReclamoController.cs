@@ -26,30 +26,81 @@ namespace ApiRVM2019.Controllers
         }
         // GET: api/<ReclamoController>
         [HttpGet]
-        public IEnumerable<Reclamo> Get()
-        
+        public IActionResult Get()
         {
-            return context.Reclamo.ToList();
+            //Agregar a la consulta la parte del inner join cuando este lista la parte de Perfil y Estado
+            var _Reclamo = from Reclamo in context.Reclamo
+                           join Estado in context.Estado on Reclamo.ID_Estado equals Estado.IDEstado
+                           join TipoReclamo in context.TipoReclamo on Reclamo.ID_TipoReclamo equals TipoReclamo.IDTipoReclamo
+                           join Sesion in context.Sesion on Reclamo.ID_Sesion equals Sesion.IDSesion
+                           join DetalleReclamo in context.DetalleReclamo on Reclamo.ID_DetalleReclamo equals DetalleReclamo.IDDetalleReclamo
+                           join Usuario in context.Usuario on Sesion.ID_Usuario equals Usuario.IDUsuario
+                           select new
+                           {
+                               IDReclamo = Reclamo.IDReclamo,
+                               FechaR = Reclamo.Fecha,
+                               HoraR = Reclamo.Hora,
+                               EstadoR = Estado.Nombre,
+                               AlturaR = DetalleReclamo.Altura,
+                               DireccionR = DetalleReclamo.Direccion,
+                               TipoReclamo = TipoReclamo.Nombre,
+                               DNIUsuario = Usuario.DNI,
+                               CelularUsuario = Usuario.Celular,
+                               Nick = Usuario.User,
+                               CorreoUsuario = Usuario.Correo,
+                           };
+
+            if (_Reclamo == null)
+            {
+                return NotFound();
+            }
+            return Ok(_Reclamo);
         }
 
         // GET api/<ReclamoController>/5
         [HttpGet("{id}")]
-        public Reclamo Get(int id)
+        public async Task<ActionResult<Reclamo>> GetReclamo(int id)
         {
-             var dato = context.Reclamo.FirstOrDefault(r => r.IDReclamo == id);
-            return dato;
+            var _Reclamo = await context.Reclamo.FindAsync(id);
+
+            if (_Reclamo == null)
+            {
+                return NotFound();
+            }
+
+            return _Reclamo;
         }
 
         // POST api/<ReclamoController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult Post([FromBody] Reclamo reclamo)
         {
+            try
+            {
+                context.Reclamo.Add(reclamo);
+                context.SaveChanges();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
         }
 
         // PUT api/<ReclamoController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public ActionResult Put(int id, [FromBody] Reclamo reclamo)
         {
+            if (reclamo.IDReclamo == id)
+            {
+                context.Entry(reclamo).State = EntityState.Modified;
+                context.SaveChanges();
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
         // DELETE api/<ReclamoController>/5

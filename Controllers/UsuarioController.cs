@@ -30,7 +30,16 @@ namespace ApiRVM2019.Controllers
 		{
 			//Agregar a la consulta la parte del inner join cuando este lista la parte de Perfil y Estado
 			var _Usuario = from Usuario in context.Usuario
-						   select Usuario;
+						   join Estado in context.Estado on Usuario.ID_Estado equals Estado.IDEstado
+						   join Perfil in context.Perfil on Usuario.ID_Perfil equals Perfil.IDPerfil
+						   select new
+						   {
+							   nombrePerfil = Perfil.Nick,
+							   nombreEstado = Estado.Nombre,
+							   
+						   };
+
+			
 
 			if (_Usuario == null)
 			{

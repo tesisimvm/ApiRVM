@@ -18,6 +18,7 @@ namespace ApiRVM2019.Entities
 		public string Correo { get; set; }
 		public int ID_Perfil { get; set; }
 		public int ID_Estado { get; set; }
+		public string User { get; set; }
 		
 	}
 }
