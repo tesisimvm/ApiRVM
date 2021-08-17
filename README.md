@@ -52,7 +52,8 @@ y LISTO!!!
 * **D'andrea Omar** - *Programador principal (Backend - Frontend)* - [omard97](https://github.com/omard97)
 * **Ferri Javier** - *Programador principal (Backend - Frontend)* - [JaviFerri7](https://github.com/JaviFerri7)
 
-##Servidores utizados
-* **Conexion Nico: Data Source=LENOVO-NICO\\SQLEXPRESS
-* **Conexion Javi: Data Source=DESKTOP-0V6LO4J
-* **Conexion Omar: Data Source=PCOMAR\\SQLOMAR
+### Cadenas de conexión ⛓️
+
+* Conexion Nico: Data Source=LENOVO-NICO\\SQLEXPRESS
+* Conexion Javi: Data Source=DESKTOP-0V6LO4J
+* Conexion Omar: Data Source=PCOMAR\\SQLOMAR
