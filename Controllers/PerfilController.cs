@@ -39,21 +39,48 @@ namespace ApiRVM2019.Controllers
 
 		// GET api/<PerfilController>/5
 		[HttpGet("{id}")]
-		public string Get(int id)
+		public async Task<ActionResult<Perfil>> GetPerfil(int id)
 		{
-			return "value";
+			var _Perfil = await context.Perfil.FindAsync(id);
+
+			if (_Perfil == null)
+			{
+				return NotFound();
+			}
+
+			return _Perfil;
 		}
 
 		// POST api/<PerfilController>
 		[HttpPost]
-		public void Post([FromBody] string value)
+		public ActionResult Post([FromBody] Perfil perfil)
 		{
+			try
+			{
+				context.Perfil.Add(perfil);
+				context.SaveChanges();
+				return Ok();
+			}
+			catch (Exception ex)
+			{
+				return BadRequest();
+			}
 		}
 
 		// PUT api/<PerfilController>/5
 		[HttpPut("{id}")]
-		public void Put(int id, [FromBody] string value)
+		public ActionResult Put(int id, [FromBody] Perfil perfil)
 		{
+			if (perfil.IDPerfil == id)
+			{
+				context.Entry(perfil).State = EntityState.Modified;
+				context.SaveChanges();
+				return Ok();
+			}
+			else
+			{
+				return BadRequest();
+			}
 		}
 
 		// DELETE api/<PerfilController>/5
