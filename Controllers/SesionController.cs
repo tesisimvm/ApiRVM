@@ -23,33 +23,31 @@ namespace ApiRVM2019.Controllers
         {
             this.context = context;
         }
+       
         //metodo get para realizar la validacion de inicio sesion
         [HttpGet]
-        public IActionResult Get(string email, string password)
+        public IActionResult ValidacionGet(string email, string password)
         {
             var _sesion = (from sesion in context.Sesion
                            join Usuario in context.Usuario on sesion.ID_Usuario equals Usuario.IDUsuario
                            join Perfil in context.Perfil on Usuario.ID_Perfil equals Perfil.IDPerfil
                            join Estado in context.Estado on Usuario.ID_Estado equals Estado.IDEstado
                            where Usuario.Correo == email && Usuario.Contrasenia == password
-                           select Usuario).Take(1);  
+                           select new
+                           {
+                               CorreoUsuario = Usuario.Correo,
+                               PassUsuario = Usuario.Contrasenia,
+                               IDUser = Usuario.IDUsuario,
+                               PerfilUsuario = Perfil.Nombre,
+                               EstadoUsuario = Estado.Nombre,
 
-                           //{
-                             //CorreoUsuario = Usuario.Correo,
-                             //PassUsuario = Usuario.Contrasenia,
-                             //IDUser = Usuario.IDUsuario,
-
-                             //NombreUsuario = Usuario.Nombre,
-                             //ApellidoUsuario = Usuario.Apellido,
-                             //CorreoUsuario =Usuario.Correo,
-                             //PassUsuario = Usuario.Contrasenia,
-                             //DNIUsuario = Usuario.DNI,
-                             //CelularUsuario = Usuario.Celular,
-                             //NickUsuario = Usuario.Nick, 
-                             //PerfilUsuario = Perfil.Nombre,
-                             //EstadoUsuario = Estado.Nombre,
-
-                           //};
+                               NombreUsuario = Usuario.Nombre,
+                               ApellidoUsuario = Usuario.Apellido,
+                               
+                               DNIUsuario = Usuario.DNI,
+                               CelularUsuario = Usuario.Celular,
+                               NickUsuario = Usuario.Nick,
+                           }).Take(1);
 
             if (_sesion == null)
             {
