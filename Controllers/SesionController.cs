@@ -6,6 +6,7 @@ using ApiRVM2019.Contexts;
 using ApiRVM2019.Entities;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -22,30 +23,86 @@ namespace ApiRVM2019.Controllers
         {
             this.context = context;
         }
-        // GET: api/<SesionController>
+        //metodo get para realizar la validacion de inicio sesion
         [HttpGet]
-        public IEnumerable<Sesion> Get()
+        public IActionResult Get(string email, string password)
         {
-            return context.Sesion.ToList();
+            var _sesion = (from sesion in context.Sesion
+                           join Usuario in context.Usuario on sesion.ID_Usuario equals Usuario.IDUsuario
+                           join Perfil in context.Perfil on Usuario.ID_Perfil equals Perfil.IDPerfil
+                           join Estado in context.Estado on Usuario.ID_Estado equals Estado.IDEstado
+                           where Usuario.Correo == email && Usuario.Contrasenia == password
+                           select Usuario).Take(1);  
+
+                           //{
+                             //CorreoUsuario = Usuario.Correo,
+                             //PassUsuario = Usuario.Contrasenia,
+                             //IDUser = Usuario.IDUsuario,
+
+                             //NombreUsuario = Usuario.Nombre,
+                             //ApellidoUsuario = Usuario.Apellido,
+                             //CorreoUsuario =Usuario.Correo,
+                             //PassUsuario = Usuario.Contrasenia,
+                             //DNIUsuario = Usuario.DNI,
+                             //CelularUsuario = Usuario.Celular,
+                             //NickUsuario = Usuario.Nick, 
+                             //PerfilUsuario = Perfil.Nombre,
+                             //EstadoUsuario = Estado.Nombre,
+
+                           //};
+
+            if (_sesion == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(_sesion);
         }
 
         // GET api/<SesionController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<ActionResult<Sesion>> GetSesion(int id)
         {
-            return "value";
+            var _Sesion = await context.Sesion.FindAsync(id);
+
+            if (_Sesion == null)
+            {
+                return NotFound();
+            }
+
+            return _Sesion;
         }
 
         // POST api/<SesionController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult Post([FromBody] Sesion SesionPost)
         {
+            try
+            {
+                context.Sesion.Add(SesionPost);
+                context.SaveChanges();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
         }
 
         // PUT api/<SesionController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public ActionResult Put(int id, [FromBody] Sesion SesionPut)
         {
+            if (SesionPut.IDSesion == id)
+            {
+                context.Entry(SesionPut).State = EntityState.Modified;
+                context.SaveChanges();
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
         // DELETE api/<SesionController>/5
