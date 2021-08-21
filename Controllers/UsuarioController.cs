@@ -36,7 +36,12 @@ namespace ApiRVM2019.Controllers
 						   {
 							   nombrePerfil = Perfil.Nombre,
 							   nombreEstado = Estado.Nombre,
-							   nombreUsuario= Usuario.Nick
+							   nombreUsuario = Usuario.Nick,
+							   correoUsuario = Usuario.Correo,
+							   telefonoUsuario = Usuario.Celular,
+							   dniUsuario = Usuario.DNI,
+							   nombrePersona = Usuario.Nombre,
+							   apellidoPersona = Usuario.Apellido
 						   };
 
 			
