@@ -28,26 +28,25 @@ namespace ApiRVM2019.Controllers
         [HttpGet]
         public IActionResult ValidacionGet(string email, string password)
         {
-            var _sesion = (from sesion in context.Sesion
-                           join Usuario in context.Usuario on sesion.ID_Usuario equals Usuario.IDUsuario
-                           join Perfil in context.Perfil on Usuario.ID_Perfil equals Perfil.IDPerfil
-                           join Estado in context.Estado on Usuario.ID_Estado equals Estado.IDEstado
-                           where Usuario.Correo == email && Usuario.Contrasenia == password
-                           select new
+            var _sesion = from Usuario in context.Usuario
+                          join Estado in context.Estado on Usuario.ID_Estado equals Estado.IDEstado
+                          join Perfil in context.Perfil on Usuario.ID_Perfil equals Perfil.IDPerfil
+                          where Usuario.Correo == email && Usuario.Contrasenia == password
+                          select new
                            {
-                               CorreoUsuario = Usuario.Correo,
-                               PassUsuario = Usuario.Contrasenia,
-                               IDUser = Usuario.IDUsuario,
-                               PerfilUsuario = Perfil.Nombre,
-                               EstadoUsuario = Estado.Nombre,
+                                   CorreoUsuario = Usuario.Correo,
+                                   PassUsuario = Usuario.Contrasenia,
+                                   IDUser = Usuario.IDUsuario,
+                                   PerfilUsuario = Perfil.Nombre,
+                                   EstadoUsuario = Estado.Nombre,
 
-                               NombreUsuario = Usuario.Nombre,
-                               ApellidoUsuario = Usuario.Apellido,
-                               
-                               DNIUsuario = Usuario.DNI,
-                               CelularUsuario = Usuario.Celular,
-                               NickUsuario = Usuario.Nick,
-                           }).Take(1);
+                                   NombreUsuario = Usuario.Nombre,
+                                   ApellidoUsuario = Usuario.Apellido,
+
+                                   DNIUsuario = Usuario.DNI,
+                                   CelularUsuario = Usuario.Celular,
+                                   NickUsuario = Usuario.Nick,
+                               };
 
             if (_sesion == null)
             {
