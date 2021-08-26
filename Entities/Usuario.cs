@@ -12,13 +12,15 @@ namespace ApiRVM2019.Entities
 		public int IDUsuario { get; set; }
 		public string Nombre { get; set; }
 		public string Apellido { get; set; }
-		public Int64 Celular { get; set; }
+		public Int32 Celular { get; set; }
 		public string Contrasenia { get; set; }
 		public string DNI { get; set; }
 		public string Correo { get; set; }
 		public int ID_Perfil { get; set; }
 		public int ID_Estado { get; set; }
 		public string Nick { get; set; }
-		
+
+		//public string Perfil { get; set; }
+
 	}
 }

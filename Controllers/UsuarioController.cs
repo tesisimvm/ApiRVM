@@ -43,7 +43,7 @@ namespace ApiRVM2019.Controllers
 							   nombrePersona = Usuario.Nombre,
 							   apellidoPersona = Usuario.Apellido
 						   };
-
+			
 			
 
 			if (_Usuario == null)
@@ -57,14 +57,29 @@ namespace ApiRVM2019.Controllers
 		[HttpGet("{id}")]
 		public async Task<ActionResult<Usuario>> GetUsuario(int id)
 		{
-			var _usuario = await context.Usuario.FindAsync(id);
+
+			var _usuario = from Usuario in context.Usuario 
+						   join Estado in context.Estado on Usuario.ID_Estado equals Estado.IDEstado
+						   join Perfil in context.Perfil on Usuario.ID_Perfil equals Perfil.IDPerfil
+						   where Usuario.IDUsuario == id
+						   select new
+						   {
+							   nombrePerfil = Perfil.Nombre,
+							   nombreEstado = Estado.Nombre,
+							   nombreUsuario = Usuario.Nick,
+							   correoUsuario = Usuario.Correo,
+							   telefonoUsuario = Usuario.Celular,
+							   dniUsuario = Usuario.DNI,
+							   nombrePersona = Usuario.Nombre,
+							   apellidoPersona = Usuario.Apellido
+						   };
 
 			if (_usuario == null)
 			{
 				return NotFound();
 			}
-
-			return _usuario;
+			
+			return Ok(_usuario);
 		}
 
 		// POST api/<UsuarioController>
