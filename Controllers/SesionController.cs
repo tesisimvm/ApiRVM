@@ -39,10 +39,8 @@ namespace ApiRVM2019.Controllers
                                    IDUser = Usuario.IDUsuario,
                                    PerfilUsuario = Perfil.Nombre,
                                    EstadoUsuario = Estado.Nombre,
-
                                    NombreUsuario = Usuario.Nombre,
                                    ApellidoUsuario = Usuario.Apellido,
-
                                    DNIUsuario = Usuario.DNI,
                                    CelularUsuario = Usuario.Celular,
                                    NickUsuario = Usuario.Nick,

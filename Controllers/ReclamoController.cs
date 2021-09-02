@@ -32,7 +32,7 @@ namespace ApiRVM2019.Controllers
                            join Estado in context.Estado on Reclamo.ID_Estado equals Estado.IDEstado
                            join TipoReclamo in context.TipoReclamo on Reclamo.ID_TipoReclamo equals TipoReclamo.IDTipoReclamo
                            join Sesion in context.Sesion on Reclamo.ID_Sesion equals Sesion.IDSesion
-                           join DetalleReclamo in context.DetalleReclamo on Reclamo.ID_DetalleReclamo equals DetalleReclamo.IDDetalleReclamo
+                           join DetalleReclamo in context.DetalleReclamo on Reclamo.IDReclamo equals DetalleReclamo.ID_Reclamo
                            join Usuario in context.Usuario on Sesion.ID_Usuario equals Usuario.IDUsuario
                            select new
                            {

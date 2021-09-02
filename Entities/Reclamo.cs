@@ -16,6 +16,5 @@ namespace ApiRVM2019.Entities
         public int ID_Sesion { get; set; }
         public int ID_TipoReclamo { get; set; }
         public int ID_Estado { get; set; }
-        public int ID_DetalleReclamo { get; set; }
     }
 }
