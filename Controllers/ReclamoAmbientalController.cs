@@ -31,7 +31,7 @@ namespace ApiRVM2019.Controllers
                            select new
                            {
                                IDReclamoAmbiental = ReclamoAmbiental.IDReclamoAmbiental,
-                               NombreRecAmbiental = ReclamoAmbiental.NombreReclamoAmbiental,
+                               NombreRecAmbiental = ReclamoAmbiental.Nombre
                            };
 
             if (_ReclamoAmbiental == null)

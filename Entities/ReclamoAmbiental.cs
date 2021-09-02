@@ -10,6 +10,6 @@ namespace ApiRVM2019.Entities
     {
         [Key]
         public int IDReclamoAmbiental { get; set; }
-        public string NombreReclamoAmbiental { get; set; }
+        public string Nombre { get; set; }
     }
 }
