@@ -18,6 +18,8 @@ namespace ApiRVM2019.Controllers
     [ApiController]
     public class ReclamoController : ControllerBase
     {
+        int idreclamo = 0;
+
         private readonly AppDbContext context;
 
         public ReclamoController(AppDbContext context)
@@ -77,7 +79,26 @@ namespace ApiRVM2019.Controllers
         {
             try
             {
-                context.Reclamo.Add(reclamo);
+                var recl=context.Reclamo.Add(reclamo);
+                context.SaveChanges();
+                reclamo.detalleReclamo.ID_Reclamo=recl.Entity.IDReclamo;
+                context.SaveChanges();
+
+                return Ok(recl);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
+        // POST api/<DetalleReclamoController>
+        [HttpPost]
+        public ActionResult PostDetalleReclamo([FromBody] DetalleReclamo DetReclamo)
+        {
+            try
+            {
+                context.DetalleReclamo.Add(DetReclamo);
                 context.SaveChanges();
                 return Ok();
             }
