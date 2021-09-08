@@ -42,7 +42,7 @@ namespace ApiRVM2019.Controllers
 							   dniUsuario = Usuario.DNI,
 							   nombrePersona = Usuario.Nombre,
 							   apellidoPersona = Usuario.Apellido,
-							   nombrePerfil2=usu
+							  // nombrePerfil2= Usuario.
 						   };
 			
 			if (_Usuario == null)
