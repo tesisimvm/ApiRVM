@@ -20,7 +20,5 @@ namespace ApiRVM2019.Entities
 		public int ID_Estado { get; set; }
 		public string Nick { get; set; }
 
-		//public string Perfil { get; set; }
-
-	}
+    }
 }

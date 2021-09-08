@@ -18,9 +18,9 @@ namespace ApiRVM2019.Controllers
     [ApiController]
     public class ReclamoController : ControllerBase
     {
-        int idreclamo = 0;
-
         private readonly AppDbContext context;
+
+        DetalleReclamo detRecl = new DetalleReclamo();
 
         public ReclamoController(AppDbContext context)
         {
@@ -38,17 +38,7 @@ namespace ApiRVM2019.Controllers
                            join Usuario in context.Usuario on Sesion.ID_Usuario equals Usuario.IDUsuario
                            select new
                            {
-                               FechaR = Reclamo.Fecha,
-                               HoraR = Reclamo.Hora,
-                               EstadoR = Estado.Nombre,
-                               AlturaR = DetalleReclamo.Altura,
-                               DireccionR = DetalleReclamo.Direccion,
-                               TipoReclamo = TipoReclamo.Nombre,
-                               DNIUsuario = Usuario.DNI,
-                               CelularUsuario = Usuario.Celular,
-                               Nick = Usuario.Nick,
-                               CorreoUsuario = Usuario.Correo,
-                               horaSesion=Sesion.HoraInicio
+                              Reclamo
                            };
 
             if (_reclamo == null)
@@ -81,10 +71,11 @@ namespace ApiRVM2019.Controllers
             {
                 var recl=context.Reclamo.Add(reclamo);
                 context.SaveChanges();
-                reclamo.detalleReclamo.ID_Reclamo=recl.Entity.IDReclamo;
-                context.SaveChanges();
 
-                return Ok(recl);
+                //detRecl.ID_Reclamo = recl.Entity.IDReclamo;
+                reclamo.IDReclamo = recl.Entity.IDReclamo;
+
+                return Ok(reclamo);
             }
             catch (Exception ex)
             {
@@ -92,23 +83,7 @@ namespace ApiRVM2019.Controllers
             }
         }
 
-        // POST api/<DetalleReclamoController>
-        [HttpPost]
-        public ActionResult PostDetalleReclamo([FromBody] DetalleReclamo DetReclamo)
-        {
-            try
-            {
-                context.DetalleReclamo.Add(DetReclamo);
-                context.SaveChanges();
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest();
-            }
-        }
-
-        // PUT api/<ReclamoController>/5
+       
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody] Reclamo reclamo)
         {

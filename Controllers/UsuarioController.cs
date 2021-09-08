@@ -41,11 +41,10 @@ namespace ApiRVM2019.Controllers
 							   telefonoUsuario = Usuario.Celular,
 							   dniUsuario = Usuario.DNI,
 							   nombrePersona = Usuario.Nombre,
-							   apellidoPersona = Usuario.Apellido
+							   apellidoPersona = Usuario.Apellido,
+							   nombrePerfil2=usu
 						   };
 			
-			
-
 			if (_Usuario == null)
 			{
 				return NotFound();

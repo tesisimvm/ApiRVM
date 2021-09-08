@@ -25,7 +25,7 @@ namespace ApiRVM2019.Controllers
         }
         // GET: api/<DetalleReclamoController>
         [HttpGet]
-        public IActionResult Get(int id)
+        public IActionResult Get()
         {
 
             var _DetReclamo = from DetalleReclamo in context.DetalleReclamo
@@ -34,7 +34,6 @@ namespace ApiRVM2019.Controllers
                               join Usuario in context.Usuario on Sesion.ID_Usuario equals Usuario.IDUsuario
                               join TipoReclamo in context.TipoReclamo on Reclamo.ID_TipoReclamo equals TipoReclamo.IDTipoReclamo
                               join Estado in context.Estado on Reclamo.ID_Estado equals Estado.IDEstado
-                              where Usuario.IDUsuario == id
                               select new
                               {
                                   TipoReclamo = TipoReclamo.Nombre,
