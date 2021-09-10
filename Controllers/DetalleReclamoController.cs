@@ -27,7 +27,7 @@ namespace ApiRVM2019.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var _DetReclamo = from DetalleReclamo in context.DetalleReclamo
+            var _DetReclamo = (from DetalleReclamo in context.DetalleReclamo
                               join reclamo in context.Reclamo on DetalleReclamo.ID_Reclamo equals reclamo.IDReclamo
                               join estado in context.Estado on reclamo.ID_Estado equals estado.IDEstado
                               join tipoestado in context.TipoEstado on estado.ID_TipoEstado equals tipoestado.IDTipoEstado
