@@ -35,20 +35,19 @@ namespace ApiRVM2019.Controllers
                               join usuario in context.Usuario on sesion.ID_Usuario equals usuario.IDUsuario
                               select new
                               {
-
-                                  IDDetReclamo = DetalleReclamo.IDDetalleReclamo,
-                                  DescripcionDR = DetalleReclamo.Descripcion,
-                                  AlturaR = DetalleReclamo.Altura,
-                                  DireccionR = DetalleReclamo.Direccion,
-                                  ID_reclamo = DetalleReclamo.ID_Reclamo,
-                                  fechaR = reclamo.Fecha,
-                                  horaR = reclamo.Hora,
-                                  estadoR = estado.Nombre,
-                                  estadoid = estado.IDEstado,
-                                  estadoT = tipoestado.nombre,
-                                  estadoTid = tipoestado.IDTipoEstado,
-                                  usuarioR = usuario.Nick,
-
+                                  IDDetalleReclamo = DetalleReclamo.IDDetalleReclamo,
+                                  Descripcion = DetalleReclamo.Descripcion,
+                                  Altura = DetalleReclamo.Altura,
+                                  Direccion = DetalleReclamo.Direccion,
+                                  ID_Reclamo = DetalleReclamo.ID_Reclamo,
+                                  Fecha = reclamo.Fecha,
+                                  Hora = reclamo.Hora,
+                                  Nombre = estado.Nombre,
+                                  IDEstado = estado.IDEstado,
+                                  NombreTEstado = tipoestado.nombre,
+                                  IDTipoEstado = tipoestado.IDTipoEstado,
+                                  Nick = usuario.Nick,
+                                  Foto=reclamo.Foto
                               };
            
 
