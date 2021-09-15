@@ -38,7 +38,18 @@ namespace ApiRVM2019.Controllers
                            join Usuario in context.Usuario on Sesion.ID_Usuario equals Usuario.IDUsuario
                            select new
                            {
-                              Reclamo
+                               // 15-09-2020 - se agregaron los campos porque en un commit anterior se borraron 
+                               FechaR = Reclamo.Fecha,
+                               HoraR = Reclamo.Hora,
+                               EstadoR = Estado.Nombre,
+                               AlturaR = DetalleReclamo.Altura,
+                               DireccionR = DetalleReclamo.Direccion,
+                               TipoReclamo = TipoReclamo.Nombre,
+                               DNIUsuario = Usuario.DNI,
+                               CelularUsuario = Usuario.Celular,
+                               Nick = Usuario.Nick,
+                               CorreoUsuario = Usuario.Correo,
+                               horaSesion = Sesion.HoraInicio,
                            };
 
             if (_reclamo == null)

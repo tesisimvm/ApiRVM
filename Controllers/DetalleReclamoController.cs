@@ -48,7 +48,7 @@ namespace ApiRVM2019.Controllers
                                   IDTipoEstado = tipoestado.IDTipoEstado,
                                   Nick = usuario.Nick,
                                   Foto=reclamo.Foto
-                              };
+                              }).OrderBy(ID => ID.ID_Reclamo);
            
 
             if (_DetReclamo == null)
