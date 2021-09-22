@@ -44,6 +44,7 @@ namespace ApiRVM2019.Controllers
                                    DNIUsuario = Usuario.DNI,
                                    CelularUsuario = Usuario.Celular,
                                    NickUsuario = Usuario.Nick,
+                                   idPerfil = Usuario.ID_Perfil,
                                };
 
             if (_sesion == null)
