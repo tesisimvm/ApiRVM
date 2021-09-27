@@ -28,12 +28,13 @@ namespace ApiRVM2019.Controllers
         public IActionResult Get()
         {
             var _DetReclamo = (from DetalleReclamo in context.DetalleReclamo
-                              join reclamo in context.Reclamo on DetalleReclamo.ID_Reclamo equals reclamo.IDReclamo
-                              join estado in context.Estado on reclamo.ID_Estado equals estado.IDEstado
-                              join tipoestado in context.TipoEstado on estado.ID_TipoEstado equals tipoestado.IDTipoEstado
-                              join sesion in context.Sesion on reclamo.ID_Sesion equals sesion.IDSesion
-                              join usuario in context.Usuario on sesion.ID_Usuario equals usuario.IDUsuario
-                              select new
+                               join reclamo in context.Reclamo on DetalleReclamo.ID_Reclamo equals reclamo.IDReclamo
+                               join estado in context.Estado on reclamo.ID_Estado equals estado.IDEstado
+                               join TipoReclamo in context.TipoReclamo on reclamo.ID_TipoReclamo equals TipoReclamo.IDTipoReclamo
+                              // join ReclamoAmbiental in context.ReclamoAmbiental on DetalleReclamo.ID_ReclamoAmbiental equals ReclamoAmbiental.IDReclamoAmbiental
+                               join sesion in context.Sesion on reclamo.ID_Sesion equals sesion.IDSesion
+                               join usuario in context.Usuario on sesion.ID_Usuario equals usuario.IDUsuario
+                               select new
                               {
                                   IDDetalleReclamo = DetalleReclamo.IDDetalleReclamo,
                                   Descripcion = DetalleReclamo.Descripcion,
@@ -44,9 +45,11 @@ namespace ApiRVM2019.Controllers
                                   Hora = reclamo.Hora,
                                   Nombre = estado.Nombre,
                                   IDEstado = estado.IDEstado,
-                                  NombreTEstado = tipoestado.nombre,
-                                  IDTipoEstado = tipoestado.IDTipoEstado,
-                                  Nick = usuario.Nick,
+                                   NombreTRec = TipoReclamo.Nombre,
+                                   IDTipoRec = TipoReclamo.IDTipoReclamo,
+                                  // IDRecAmb = ReclamoAmbiental.IDReclamoAmbiental,
+                                  // NombreRecAmbiental = ReclamoAmbiental.Nombre, //quema de arboles, unundaciones, etc
+                                   Nick = usuario.Nick,
                                   Foto=reclamo.Foto
                               }).OrderBy(ID => ID.ID_Reclamo);
            
@@ -65,7 +68,8 @@ namespace ApiRVM2019.Controllers
             var _DetReclamo = (from DetalleReclamo in context.DetalleReclamo
                                join reclamo in context.Reclamo on DetalleReclamo.ID_Reclamo equals reclamo.IDReclamo
                                join estado in context.Estado on reclamo.ID_Estado equals estado.IDEstado
-                               join tipoestado in context.TipoEstado on estado.ID_TipoEstado equals tipoestado.IDTipoEstado
+                               join TipoReclamo in context.TipoReclamo on reclamo.ID_TipoReclamo equals TipoReclamo.IDTipoReclamo
+                              // join ReclamoAmbiental in context.ReclamoAmbiental on DetalleReclamo.ID_ReclamoAmbiental equals ReclamoAmbiental.IDReclamoAmbiental
                                join sesion in context.Sesion on reclamo.ID_Sesion equals sesion.IDSesion
                                join usuario in context.Usuario on sesion.ID_Usuario equals usuario.IDUsuario
                                where usuario.IDUsuario == id
@@ -80,8 +84,10 @@ namespace ApiRVM2019.Controllers
                                    Hora = reclamo.Hora,
                                    Nombre = estado.Nombre,
                                    IDEstado = estado.IDEstado,
-                                   NombreTEstado = tipoestado.nombre,
-                                   IDTipoEstado = tipoestado.IDTipoEstado,
+                                   NombreTRec = TipoReclamo.Nombre,
+                                   IDTipoRec = TipoReclamo.IDTipoReclamo,
+                                  // IDRecAmb = ReclamoAmbiental.IDReclamoAmbiental,
+                                  // NombreRecAmbiental = ReclamoAmbiental.Nombre, //quema de arboles, unundaciones, etc
                                    Nick = usuario.Nick,
                                    Foto = reclamo.Foto
                                }).OrderBy(ID => ID.ID_Reclamo);

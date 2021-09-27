@@ -32,6 +32,7 @@ namespace ApiRVM2019.Controllers
                                  join ModeloVehiculo in context.ModeloVehiculo on MarcaVehiculo.ID_Modelo equals ModeloVehiculo.IDModelo
                             select new
                             {
+                                IDMarca = MarcaVehiculo.IDMarca,
                                 marcaVehiculo=MarcaVehiculo.Nombre,
                                 modeloVehiculo=ModeloVehiculo.Nombre
                             };

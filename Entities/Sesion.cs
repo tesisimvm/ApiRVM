@@ -10,10 +10,10 @@ namespace ApiRVM2019.Entities
     {
         [Key]
         public int IDSesion { get; set; }
-        public DateTime FechaInicio { get; set; }
-        public DateTime FechaFin { get; set; }
-        public TimeSpan HoraInicio { get; set; }
-        public TimeSpan HoraFin { get; set; }
+        public string FechaInicio { get; set; } //DateTime
+        public string FechaFin { get; set; } //DateTime
+        public string HoraInicio { get; set; } //TimeSpan
+        public string  HoraFin { get; set; } //TimeSpan
 
         public int ID_Usuario { get; set; }
 

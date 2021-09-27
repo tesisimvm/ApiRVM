@@ -32,6 +32,7 @@ namespace ApiRVM2019.Controllers
             var _modelovehiculo = from ModeloVehiculo in context.ModeloVehiculo
                                  select new
                                  {
+                                     IDModelo =  ModeloVehiculo.IDModelo,
                                      modeloVehiculo =ModeloVehiculo.Nombre
                                  };
             if (_modelovehiculo == null)

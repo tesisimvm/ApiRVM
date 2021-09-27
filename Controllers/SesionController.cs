@@ -19,6 +19,8 @@ namespace ApiRVM2019.Controllers
     {
         private readonly AppDbContext context;
 
+        Sesion objSesion = new Sesion();
+
         public SesionController(AppDbContext context)
         {
             this.context = context;
@@ -75,9 +77,15 @@ namespace ApiRVM2019.Controllers
         {
             try
             {
-                context.Sesion.Add(SesionPost);
+                var ses= context.Sesion.Add(SesionPost);
                 context.SaveChanges();
-                return Ok();
+
+                SesionPost.IDSesion = ses.Entity.IDSesion;
+
+
+
+
+                return Ok(SesionPost);
             }
             catch (Exception ex)
             {
