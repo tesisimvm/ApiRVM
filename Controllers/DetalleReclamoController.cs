@@ -60,32 +60,38 @@ namespace ApiRVM2019.Controllers
 
         // GET api/<DetalleReclamoController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<DetalleReclamo>> GetDetalleReclamo(int id)
+        public IActionResult GetReclamosUsuario(int id)
         {
-            var _DetReclamo = await context.DetalleReclamo.FindAsync(from DetalleReclamo in context.DetalleReclamo
-                                                                     join Reclamo in context.Reclamo on DetalleReclamo.ID_Reclamo equals Reclamo.IDReclamo
-                                                                     join Sesion in context.Sesion on Reclamo.ID_Sesion equals Sesion.IDSesion
-                                                                     join Usuario in context.Usuario on Sesion.ID_Usuario equals Usuario.IDUsuario
-                                                                     join TipoReclamo in context.TipoReclamo on Reclamo.ID_TipoReclamo equals TipoReclamo.IDTipoReclamo
-                                                                     join Estado in context.Estado on Reclamo.ID_Estado equals Estado.IDEstado
-                                                                     where Usuario.IDUsuario == id
-                                                                     select new
-                                                                     {
-                                                                         TipoReclamo = TipoReclamo.Nombre,
-                                                                         Descripcion = DetalleReclamo.Descripcion,
-                                                                         Fecha = Reclamo.Fecha,
-                                                                         Hora = Reclamo.Hora,
-                                                                         Foto = Reclamo.Foto,
-                                                                         Estado = Estado.Nombre,
-                                                                         Direccion = DetalleReclamo.Direccion
-                                                                     });
+            var _DetReclamo = (from DetalleReclamo in context.DetalleReclamo
+                               join reclamo in context.Reclamo on DetalleReclamo.ID_Reclamo equals reclamo.IDReclamo
+                               join estado in context.Estado on reclamo.ID_Estado equals estado.IDEstado
+                               join tipoestado in context.TipoEstado on estado.ID_TipoEstado equals tipoestado.IDTipoEstado
+                               join sesion in context.Sesion on reclamo.ID_Sesion equals sesion.IDSesion
+                               join usuario in context.Usuario on sesion.ID_Usuario equals usuario.IDUsuario
+                               where usuario.IDUsuario == id
+                               select new
+                               {
+                                   IDDetalleReclamo = DetalleReclamo.IDDetalleReclamo,
+                                   Descripcion = DetalleReclamo.Descripcion,
+                                   Altura = DetalleReclamo.Altura,
+                                   Direccion = DetalleReclamo.Direccion,
+                                   ID_Reclamo = DetalleReclamo.ID_Reclamo,
+                                   Fecha = reclamo.Fecha,
+                                   Hora = reclamo.Hora,
+                                   Nombre = estado.Nombre,
+                                   IDEstado = estado.IDEstado,
+                                   NombreTEstado = tipoestado.nombre,
+                                   IDTipoEstado = tipoestado.IDTipoEstado,
+                                   Nick = usuario.Nick,
+                                   Foto = reclamo.Foto
+                               }).OrderBy(ID => ID.ID_Reclamo);
+
 
             if (_DetReclamo == null)
             {
                 return NotFound();
             }
-
-            return _DetReclamo;
+            return Ok(_DetReclamo);
         }
 
         // POST api/<DetalleReclamoController>
