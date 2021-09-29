@@ -83,7 +83,6 @@ namespace ApiRVM2019.Controllers
                 var recl=context.Reclamo.Add(reclamo);
                 context.SaveChanges();
 
-                //detRecl.ID_Reclamo = recl.Entity.IDReclamo;
                 reclamo.IDReclamo = recl.Entity.IDReclamo;
 
                 return Ok(reclamo);
