@@ -107,6 +107,12 @@ namespace ApiRVM2019.Controllers
             try
             {
                 context.DetalleReclamo.Add(DetReclamo);
+
+                if(DetReclamo.ID_ReclamoAmbiental==0)
+                {
+                    DetReclamo.ID_ReclamoAmbiental = 1;
+                }
+
                 context.SaveChanges();
                 return Ok();
             }
