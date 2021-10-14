@@ -88,7 +88,7 @@ namespace ApiRVM2019.Controllers
                                    IDTipoRec = TipoReclamo.IDTipoReclamo,
                                   // IDRecAmb = ReclamoAmbiental.IDReclamoAmbiental,
                                    NombreRecAmbiental = ReclamoAmbiental.Nombre, //quema de arboles, unundaciones, etc
-                                   Dominio=DetalleReclamo.Dominio,
+                                  Dominio=DetalleReclamo.Dominio,
                                    Nick = usuario.Nick,
                                    Foto = reclamo.Foto
                                }).OrderBy(ID => ID.ID_Reclamo);
@@ -107,15 +107,16 @@ namespace ApiRVM2019.Controllers
         {
             try
             {
-                context.DetalleReclamo.Add(DetReclamo);
+                var DTR = context.DetalleReclamo.Add(DetReclamo);
 
                 if(DetReclamo.ID_ReclamoAmbiental==0)
                 {
-                    DetReclamo.ID_ReclamoAmbiental = 1;
+                    DetReclamo.ID_ReclamoAmbiental = 12; //Sin asignar - reclamo ambiental
                 }
 
                 context.SaveChanges();
-                return Ok();
+                DetReclamo.IDDetalleReclamo = DTR.Entity.IDDetalleReclamo;
+                return Ok(DetReclamo);//agregar variable DetReclamo
             }
             catch (Exception ex)
             {

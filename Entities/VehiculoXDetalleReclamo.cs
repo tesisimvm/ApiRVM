@@ -9,7 +9,7 @@ namespace ApiRVM2019.Entities
     public class VehiculoXDetalleReclamo
     {
         [Key]
-        public int IDVXDetalleReclamo { get; set; }
+        public int IDVehiculoXDetalle { get; set; }
         public int ID_Vehiculo { get; set; }
         public int ID_DetalleReclamo { get; set; }
     }

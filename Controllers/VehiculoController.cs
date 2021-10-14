@@ -71,9 +71,10 @@ namespace ApiRVM2019.Controllers
         {
             try
             {
-                context.Vehiculo.Add(vehiculo);
+                var VH = context.Vehiculo.Add(vehiculo);
                 context.SaveChanges();
-                return Ok();
+                vehiculo.IDVehiculo = VH.Entity.IDVehiculo;
+                return Ok(vehiculo);
             }
             catch (Exception ex)
             {
