@@ -126,19 +126,28 @@ namespace ApiRVM2019.Controllers
 
         // PUT api/<DetalleReclamoController>/5
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] DetalleReclamo DetReclamo)
+        public async Task<ActionResult<DetalleReclamo>> actualizarDetalleReclamo(int id, [FromBody] DetalleReclamo item)
         {
-            if (DetReclamo.IDDetalleReclamo == id)
+            if (item.IDDetalleReclamo == id)
             {
-                context.Entry(DetReclamo).State = EntityState.Modified;
+                context.Entry(item).State = EntityState.Modified;
                 context.SaveChanges();
-                return Ok();
             }
-            else
+            else if (id != item.IDDetalleReclamo)
             {
                 return BadRequest();
             }
+
+            var result = await context.Usuario.FindAsync(id);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return NoContent();
         }
+
 
         // DELETE api/<DetalleReclamoController>/5
         [HttpDelete("{id}")]

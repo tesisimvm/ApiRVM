@@ -94,20 +94,20 @@ namespace ApiRVM2019.Controllers
         }
 
        
-        [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] Reclamo reclamo)
-        {
-            if (reclamo.IDReclamo == id)
-            {
-                context.Entry(reclamo).State = EntityState.Modified;
-                context.SaveChanges();
-                return Ok();
-            }
-            else
-            {
-                return BadRequest();
-            }
-        }
+        //[HttpPut("{id}")]
+        //public ActionResult Put(int id, [FromBody] Reclamo reclamo)
+        //{
+        //    if (reclamo.IDReclamo == id)
+        //    {
+        //        context.Entry(reclamo).State = EntityState.Modified;
+        //        context.SaveChanges();
+        //        return Ok();
+        //    }
+        //    else
+        //    {
+        //        return BadRequest();
+        //    }
+        //}
 
         // DELETE api/<ReclamoController>/5
         [HttpDelete("{id}")]
