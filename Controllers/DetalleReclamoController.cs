@@ -47,7 +47,7 @@ namespace ApiRVM2019.Controllers
                                   IDEstado = estado.IDEstado,
                                    NombreTRec = TipoReclamo.Nombre,
                                    IDTipoRec = TipoReclamo.IDTipoReclamo,
-                                  // IDRecAmb = ReclamoAmbiental.IDReclamoAmbiental,
+                                   IDRecAmb = ReclamoAmbiental.IDReclamoAmbiental,
                                    NombreRecAmbiental = ReclamoAmbiental.Nombre, //quema de arboles, unundaciones, etc
                                    Nick = usuario.Nick,
                                   Foto=reclamo.Foto
@@ -82,11 +82,15 @@ namespace ApiRVM2019.Controllers
                                    ID_Reclamo = DetalleReclamo.ID_Reclamo,
                                    Fecha = reclamo.Fecha,
                                    Hora = reclamo.Hora,
+                                   IDSesion = reclamo.ID_Sesion,
+                                   
                                    Nombre = estado.Nombre,
                                    IDEstado = estado.IDEstado,
+                                   
                                    NombreTRec = TipoReclamo.Nombre,
                                    IDTipoRec = TipoReclamo.IDTipoReclamo,
-                                  // IDRecAmb = ReclamoAmbiental.IDReclamoAmbiental,
+                                   IDRecAmb = ReclamoAmbiental.IDReclamoAmbiental,
+                                   
                                    NombreRecAmbiental = ReclamoAmbiental.Nombre, //quema de arboles, unundaciones, etc
                                   Dominio=DetalleReclamo.Dominio,
                                    Nick = usuario.Nick,

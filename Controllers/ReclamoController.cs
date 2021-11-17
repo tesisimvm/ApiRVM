@@ -93,8 +93,29 @@ namespace ApiRVM2019.Controllers
             }
         }
 
-       
-        //[HttpPut("{id}")]
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Reclamo>> actualizarReclamo(int id, [FromBody] Reclamo item)
+        {
+            if (item.IDReclamo == id)
+            {
+                context.Entry(item).State = EntityState.Modified;
+                context.SaveChanges();
+            }
+            else if (id != item.IDReclamo)
+            {
+                return BadRequest();
+            }
+
+            var result = await context.Reclamo.FindAsync(id);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return NoContent();
+        }
         //public ActionResult Put(int id, [FromBody] Reclamo reclamo)
         //{
         //    if (reclamo.IDReclamo == id)

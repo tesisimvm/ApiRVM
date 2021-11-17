@@ -1,24 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\JaviFerri\\source\\repos\\ApiRVM\\ApiRVM2019.csproj": {}
+    "C:\\Users\\PC - OMAR\\source\\repos\\ApiRVM\\ApiRVM2019.csproj": {}
   },
   "projects": {
-    "C:\\Users\\JaviFerri\\source\\repos\\ApiRVM\\ApiRVM2019.csproj": {
+    "C:\\Users\\PC - OMAR\\source\\repos\\ApiRVM\\ApiRVM2019.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\JaviFerri\\source\\repos\\ApiRVM\\ApiRVM2019.csproj",
+        "projectUniqueName": "C:\\Users\\PC - OMAR\\source\\repos\\ApiRVM\\ApiRVM2019.csproj",
         "projectName": "ApiRVM2019",
-        "projectPath": "C:\\Users\\JaviFerri\\source\\repos\\ApiRVM\\ApiRVM2019.csproj",
-        "packagesPath": "C:\\Users\\JaviFerri\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\JaviFerri\\source\\repos\\ApiRVM\\obj\\",
+        "projectPath": "C:\\Users\\PC - OMAR\\source\\repos\\ApiRVM\\ApiRVM2019.csproj",
+        "packagesPath": "C:\\Users\\PC - OMAR\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\PC - OMAR\\source\\repos\\ApiRVM\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\JaviFerri\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\PC - OMAR\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -70,7 +72,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }
