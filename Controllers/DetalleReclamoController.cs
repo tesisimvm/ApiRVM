@@ -62,8 +62,8 @@ namespace ApiRVM2019.Controllers
         }
 
         // GET api/<DetalleReclamoController>/5
-        [HttpGet("{id}")]
-        public IActionResult GetReclamosUsuario(int id)
+        [HttpGet("{id}/{idEstado}")]
+        public IActionResult GetReclamosUsuario(int id, int idEstado)
         {
             var _DetReclamo = (from DetalleReclamo in context.DetalleReclamo
                                join reclamo in context.Reclamo on DetalleReclamo.ID_Reclamo equals reclamo.IDReclamo
@@ -72,7 +72,7 @@ namespace ApiRVM2019.Controllers
                                join ReclamoAmbiental in context.ReclamoAmbiental on DetalleReclamo.ID_ReclamoAmbiental equals ReclamoAmbiental.IDReclamoAmbiental
                                join sesion in context.Sesion on reclamo.ID_Sesion equals sesion.IDSesion
                                join usuario in context.Usuario on sesion.ID_Usuario equals usuario.IDUsuario
-                               where usuario.IDUsuario == id
+                               where usuario.IDUsuario == id && estado.IDEstado==idEstado
                                select new
                                {
                                    IDDetalleReclamo = DetalleReclamo.IDDetalleReclamo,
@@ -142,7 +142,7 @@ namespace ApiRVM2019.Controllers
                 return BadRequest();
             }
 
-            var result = await context.Usuario.FindAsync(id);
+            var result = await context.DetalleReclamo.FindAsync(id);
 
             if (result == null)
             {
