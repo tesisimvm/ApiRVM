@@ -25,7 +25,7 @@ namespace ApiRVM2019.Controllers.FiltrosHistorialController
         }
         // GET: api/<FiltrosReclamosController>
         [HttpGet]
-        public IActionResult Get(int idTipoR, int idEstado) //esto es para traer los reclamos siendo administrador
+        public IActionResult Get(int idTipoR, int idEstado) //se obtienen los reclamos filtrados por tipo y estado
         {
             var _DetReclamo = (from DetalleReclamo in context.DetalleReclamo
                                join reclamo in context.Reclamo on DetalleReclamo.ID_Reclamo equals reclamo.IDReclamo
@@ -52,7 +52,7 @@ namespace ApiRVM2019.Controllers.FiltrosHistorialController
                                    NombreRecAmbiental = ReclamoAmbiental.Nombre, //quema de arboles, unundaciones, etc
                                    Nick = usuario.Nick,
                                    Foto = reclamo.Foto
-                               }).OrderBy(ID => ID.ID_Reclamo);
+                               }).OrderByDescending(ID => ID.ID_Reclamo);
 
 
             if (_DetReclamo == null)
@@ -63,8 +63,8 @@ namespace ApiRVM2019.Controllers.FiltrosHistorialController
         }
 
         // GET api/<FiltrosReclamosController>/5
-        [HttpGet("{idTipoR}/{idEstado}/{idUsuario}")]
-        public IActionResult Get(int idTipoR, int idEstado, int idUsuario) //esto es para traer los reclamos siendo administrador
+        [HttpGet("{idTipoR}/{idEstado}/{idUsuario}")]//+fechaInicio+'/'+fechaFin
+        public IActionResult Get(int idTipoR, int idEstado, int idUsuario) //se obtienen los reclamos filtrados por tipo reclamo, estado por el usuario logueado
         {
             var _DetReclamo = (from DetalleReclamo in context.DetalleReclamo
                                join reclamo in context.Reclamo on DetalleReclamo.ID_Reclamo equals reclamo.IDReclamo
@@ -91,7 +91,7 @@ namespace ApiRVM2019.Controllers.FiltrosHistorialController
                                    NombreRecAmbiental = ReclamoAmbiental.Nombre, //quema de arboles, unundaciones, etc
                                    Nick = usuario.Nick,
                                    Foto = reclamo.Foto
-                               }).OrderBy(ID => ID.ID_Reclamo);
+                               }).OrderByDescending(ID => ID.ID_Reclamo);
 
 
             if (_DetReclamo == null)

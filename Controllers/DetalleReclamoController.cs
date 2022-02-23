@@ -51,7 +51,7 @@ namespace ApiRVM2019.Controllers
                                    NombreRecAmbiental = ReclamoAmbiental.Nombre, //quema de arboles, unundaciones, etc
                                    Nick = usuario.Nick,
                                   Foto=reclamo.Foto
-                              }).OrderBy(ID => ID.ID_Reclamo);
+                              }).OrderByDescending(ID => ID.ID_Reclamo);
            
 
             if (_DetReclamo == null)
@@ -95,7 +95,7 @@ namespace ApiRVM2019.Controllers
                                   Dominio=DetalleReclamo.Dominio,
                                    Nick = usuario.Nick,
                                    Foto = reclamo.Foto
-                               }).OrderBy(ID => ID.ID_Reclamo);
+                               }).OrderByDescending(ID => ID.ID_Reclamo);
 
 
             if (_DetReclamo == null)
