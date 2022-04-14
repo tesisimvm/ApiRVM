@@ -30,12 +30,9 @@ namespace ApiRVM2019.Controllers.Historial
         [HttpGet]
         public IActionResult Get(string fechaHoy, int idUsuario, int idEstadoA, int idEstadoV, int idRol)
         {
-
-
             //reclamos del dia de hoy
             //ejemplo
             //https://localhost:44363/HistorialHoy?fechaHoy=2021-10-22&idUsuario=1&idEstadoA=1&idEstadoV=5&idRol=1  Postman o Google
-
             if (idRol==1 || idRol==2) //administrador o empleado devuelve todos los reclamos del dia
             {
                 var _DetReclamo = (from DetalleReclamo in context.DetalleReclamo

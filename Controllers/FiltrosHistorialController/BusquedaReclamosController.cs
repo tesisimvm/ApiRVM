@@ -25,41 +25,158 @@ namespace ApiRVM2019.Controllers.FiltrosHistorialController
         }
         // GET: api/<FiltrosReclamosController>
         [HttpGet]
-        public IActionResult Get(int idTipoR, int idEstado) //se obtienen los reclamos filtrados por tipo y estado
+        public IActionResult Get(int idTipoR, int idEstado, string nombreUsuario) //se obtienen los reclamos filtrados por tipo y estado
         {
-            var _DetReclamo = (from DetalleReclamo in context.DetalleReclamo
-                               join reclamo in context.Reclamo on DetalleReclamo.ID_Reclamo equals reclamo.IDReclamo
-                               join estado in context.Estado on reclamo.ID_Estado equals estado.IDEstado
-                               join TipoReclamo in context.TipoReclamo on reclamo.ID_TipoReclamo equals TipoReclamo.IDTipoReclamo
-                               join ReclamoAmbiental in context.ReclamoAmbiental on DetalleReclamo.ID_ReclamoAmbiental equals ReclamoAmbiental.IDReclamoAmbiental
-                               join sesion in context.Sesion on reclamo.ID_Sesion equals sesion.IDSesion
-                               join usuario in context.Usuario on sesion.ID_Usuario equals usuario.IDUsuario
-                               where reclamo.ID_TipoReclamo==idTipoR && reclamo.ID_Estado==idEstado
-                               select new
-                               {
-                                   IDDetalleReclamo = DetalleReclamo.IDDetalleReclamo,
-                                   Descripcion = DetalleReclamo.Descripcion,
-                                   Altura = DetalleReclamo.Altura,
-                                   Direccion = DetalleReclamo.Direccion,
-                                   ID_Reclamo = DetalleReclamo.ID_Reclamo,
-                                   Fecha = reclamo.Fecha,
-                                   Hora = reclamo.Hora,
-                                   Nombre = estado.Nombre,
-                                   IDEstado = estado.IDEstado,
-                                   NombreTRec = TipoReclamo.Nombre,
-                                   IDTipoRec = TipoReclamo.IDTipoReclamo,
-                                   IDRecAmb = ReclamoAmbiental.IDReclamoAmbiental,
-                                   NombreRecAmbiental = ReclamoAmbiental.Nombre, //quema de arboles, unundaciones, etc
-                                   Nick = usuario.Nick,
-                                   Foto = reclamo.Foto
-                               }).OrderByDescending(ID => ID.ID_Reclamo);
+            if ((idEstado!=15 && idEstado!=14) && nombreUsuario==null)
+            {//cuando el admin solicita los reclamos del tipo de reclamo, su estado pero NO el usuario y no selecciona TODOS
+                var _DetReclamo = (from DetalleReclamo in context.DetalleReclamo
+                                   join reclamo in context.Reclamo on DetalleReclamo.ID_Reclamo equals reclamo.IDReclamo
+                                   join estado in context.Estado on reclamo.ID_Estado equals estado.IDEstado
+                                   join TipoReclamo in context.TipoReclamo on reclamo.ID_TipoReclamo equals TipoReclamo.IDTipoReclamo
+                                   join ReclamoAmbiental in context.ReclamoAmbiental on DetalleReclamo.ID_ReclamoAmbiental equals ReclamoAmbiental.IDReclamoAmbiental
+                                   join sesion in context.Sesion on reclamo.ID_Sesion equals sesion.IDSesion
+                                   join usuario in context.Usuario on sesion.ID_Usuario equals usuario.IDUsuario
+                                   where reclamo.ID_TipoReclamo == idTipoR && reclamo.ID_Estado == idEstado
+                                   select new
+                                   {
+                                       IDDetalleReclamo = DetalleReclamo.IDDetalleReclamo,
+                                       Descripcion = DetalleReclamo.Descripcion,
+                                       Altura = DetalleReclamo.Altura,
+                                       Direccion = DetalleReclamo.Direccion,
+                                       ID_Reclamo = DetalleReclamo.ID_Reclamo,
+                                       Fecha = reclamo.Fecha,
+                                       Hora = reclamo.Hora,
+                                       Nombre = estado.Nombre,
+                                       IDEstado = estado.IDEstado,
+                                       NombreTRec = TipoReclamo.Nombre,
+                                       IDTipoRec = TipoReclamo.IDTipoReclamo,
+                                       IDRecAmb = ReclamoAmbiental.IDReclamoAmbiental,
+                                       NombreRecAmbiental = ReclamoAmbiental.Nombre, //quema de arboles, unundaciones, etc
+                                       Nick = usuario.Nick,
+                                       Foto = reclamo.Foto
+                                   }).OrderByDescending(fecha => fecha.Fecha);
+
+                if (_DetReclamo == null)
+                {
+                    return NotFound();
+                }
+                return Ok(_DetReclamo);
+            }
+            else if((idEstado == 15 || idEstado==14) && nombreUsuario==null)
+            {//cuando el admin solicita los reclamos del tipo de reclamo, su estado pero NO el usuario y SI selecciona TODOS
+                var _DetReclamo = (from DetalleReclamo in context.DetalleReclamo
+                                   join reclamo in context.Reclamo on DetalleReclamo.ID_Reclamo equals reclamo.IDReclamo
+                                   join estado in context.Estado on reclamo.ID_Estado equals estado.IDEstado
+                                   join TipoReclamo in context.TipoReclamo on reclamo.ID_TipoReclamo equals TipoReclamo.IDTipoReclamo
+                                   join ReclamoAmbiental in context.ReclamoAmbiental on DetalleReclamo.ID_ReclamoAmbiental equals ReclamoAmbiental.IDReclamoAmbiental
+                                   join sesion in context.Sesion on reclamo.ID_Sesion equals sesion.IDSesion
+                                   join usuario in context.Usuario on sesion.ID_Usuario equals usuario.IDUsuario
+                                   where reclamo.ID_TipoReclamo == idTipoR && reclamo.ID_Estado == idEstado
+                                   select new
+                                   {
+                                       IDDetalleReclamo = DetalleReclamo.IDDetalleReclamo,
+                                       Descripcion = DetalleReclamo.Descripcion,
+                                       Altura = DetalleReclamo.Altura,
+                                       Direccion = DetalleReclamo.Direccion,
+                                       ID_Reclamo = DetalleReclamo.ID_Reclamo,
+                                       Fecha = reclamo.Fecha,
+                                       Hora = reclamo.Hora,
+                                       Nombre = estado.Nombre,
+                                       IDEstado = estado.IDEstado,
+                                       NombreTRec = TipoReclamo.Nombre,
+                                       IDTipoRec = TipoReclamo.IDTipoReclamo,
+                                       IDRecAmb = ReclamoAmbiental.IDReclamoAmbiental,
+                                       NombreRecAmbiental = ReclamoAmbiental.Nombre, //quema de arboles, unundaciones, etc
+                                       Nick = usuario.Nick,
+                                       Foto = reclamo.Foto
+                                   }).OrderByDescending(fecha => fecha.Fecha);
 
 
-            if (_DetReclamo == null)
+                if (_DetReclamo == null)
+                {
+                    return NotFound();
+                }
+                return Ok(_DetReclamo);
+
+                
+            }
+            else if ((idEstado != 15 && idEstado != 14) && nombreUsuario != null)
+            {//cuando el admin solicita los reclamos del tipo de reclamo, su estado pero SI el usuario y NO selecciona TODOS
+                var _DetReclamo = (from DetalleReclamo in context.DetalleReclamo
+                                   join reclamo in context.Reclamo on DetalleReclamo.ID_Reclamo equals reclamo.IDReclamo
+                                   join estado in context.Estado on reclamo.ID_Estado equals estado.IDEstado
+                                   join TipoReclamo in context.TipoReclamo on reclamo.ID_TipoReclamo equals TipoReclamo.IDTipoReclamo
+                                   join ReclamoAmbiental in context.ReclamoAmbiental on DetalleReclamo.ID_ReclamoAmbiental equals ReclamoAmbiental.IDReclamoAmbiental
+                                   join sesion in context.Sesion on reclamo.ID_Sesion equals sesion.IDSesion
+                                   join usuario in context.Usuario on sesion.ID_Usuario equals usuario.IDUsuario
+                                   where reclamo.ID_TipoReclamo == idTipoR && reclamo.ID_Estado==idEstado && usuario.Nick==nombreUsuario
+                                   select new
+                                   {
+                                       IDDetalleReclamo = DetalleReclamo.IDDetalleReclamo,
+                                       Descripcion = DetalleReclamo.Descripcion,
+                                       Altura = DetalleReclamo.Altura,
+                                       Direccion = DetalleReclamo.Direccion,
+                                       ID_Reclamo = DetalleReclamo.ID_Reclamo,
+                                       Fecha = reclamo.Fecha,
+                                       Hora = reclamo.Hora,
+                                       Nombre = estado.Nombre,
+                                       IDEstado = estado.IDEstado,
+                                       NombreTRec = TipoReclamo.Nombre,
+                                       IDTipoRec = TipoReclamo.IDTipoReclamo,
+                                       IDRecAmb = ReclamoAmbiental.IDReclamoAmbiental,
+                                       NombreRecAmbiental = ReclamoAmbiental.Nombre, //quema de arboles, unundaciones, etc
+                                       Nick = usuario.Nick,
+                                       Foto = reclamo.Foto
+                                   }).OrderByDescending(fecha => fecha.Fecha);
+
+
+                if (_DetReclamo == null)
+                {
+                    return NotFound();
+                }
+                return Ok(_DetReclamo);
+            }
+            else if((idEstado == 15 || idEstado == 14) && nombreUsuario != null)
+            {//cuando el admin solicita los reclamos del tipo de reclamo, su estado pero SI el usuario y SI selecciona TODOS
+                var _DetReclamo = (from DetalleReclamo in context.DetalleReclamo
+                                   join reclamo in context.Reclamo on DetalleReclamo.ID_Reclamo equals reclamo.IDReclamo
+                                   join estado in context.Estado on reclamo.ID_Estado equals estado.IDEstado
+                                   join TipoReclamo in context.TipoReclamo on reclamo.ID_TipoReclamo equals TipoReclamo.IDTipoReclamo
+                                   join ReclamoAmbiental in context.ReclamoAmbiental on DetalleReclamo.ID_ReclamoAmbiental equals ReclamoAmbiental.IDReclamoAmbiental
+                                   join sesion in context.Sesion on reclamo.ID_Sesion equals sesion.IDSesion
+                                   join usuario in context.Usuario on sesion.ID_Usuario equals usuario.IDUsuario
+                                   where reclamo.ID_TipoReclamo == idTipoR  && usuario.Nick == nombreUsuario
+                                   select new
+                                   {
+                                       IDDetalleReclamo = DetalleReclamo.IDDetalleReclamo,
+                                       Descripcion = DetalleReclamo.Descripcion,
+                                       Altura = DetalleReclamo.Altura,
+                                       Direccion = DetalleReclamo.Direccion,
+                                       ID_Reclamo = DetalleReclamo.ID_Reclamo,
+                                       Fecha = reclamo.Fecha,
+                                       Hora = reclamo.Hora,
+                                       Nombre = estado.Nombre,
+                                       IDEstado = estado.IDEstado,
+                                       NombreTRec = TipoReclamo.Nombre,
+                                       IDTipoRec = TipoReclamo.IDTipoReclamo,
+                                       IDRecAmb = ReclamoAmbiental.IDReclamoAmbiental,
+                                       NombreRecAmbiental = ReclamoAmbiental.Nombre, //quema de arboles, unundaciones, etc
+                                       Nick = usuario.Nick,
+                                       Foto = reclamo.Foto
+                                   }).OrderByDescending(fecha => fecha.Fecha);
+
+
+                if (_DetReclamo == null)
+                {
+                    return NotFound();
+                }
+                return Ok(_DetReclamo);
+            }
+            else
             {
                 return NotFound();
             }
-            return Ok(_DetReclamo);
+           
         }
 
         // GET api/<FiltrosReclamosController>/5
