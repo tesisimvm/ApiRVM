@@ -29,5 +29,8 @@ namespace ApiRVM2019.Contexts
         public DbSet<MarcaVehiculo> MarcaVehiculo { get; set; }
         public DbSet<ModeloVehiculo> ModeloVehiculo { get; set; }
         public DbSet<TipoVehiculo> TipoVehiculo { get; set; }
+
+        public DbSet<V_CantidadxEstado> V_CantidadxEstado {get; set;}
+        public DbSet<Entities.Dashboard.V_TotalReclamosRealizados> V_TotalReclamosRealizados { get; set; }
     }
 }
