@@ -10,57 +10,58 @@ using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace ApiRVM2019.Controllers.Estadistica
+namespace ApiRVM2019.Controllers.Dashboard
 {
     [EnableCors("All")]
     [Route("[controller]")]
     [ApiController]
-    public class CantidadXEstadosController : ControllerBase
+    public class V_CantidadxEstadoUsuario : ControllerBase
     {
         private readonly AppDbContext context;
 
-        public CantidadXEstadosController(AppDbContext context)
+        public V_CantidadxEstadoUsuario(AppDbContext context)
         {
             this.context = context;
         }
 
-        // GET: api/<CantidadXEstadosController>
+        // GET: api/<V_CantidadxEstadoUsuario>
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get( int idUsuario)
         {
-            var data = from V_CantidadxEstado in context.V_CantidadxEstado
+            var data = from V_CantidadxEstadoUsuario in context.V_CantidadxEstadoUsuario
+                       where V_CantidadxEstadoUsuario.IDusuario==idUsuario
                        select new
-            {
-                           name = V_CantidadxEstado.Nombre,
-                           value = V_CantidadxEstado.Cantidad
-            };    
+                       {
+                           name = "Reclamos: "+ V_CantidadxEstadoUsuario.Nombre,
+                           value = V_CantidadxEstadoUsuario.Cantidad
+                       };
             if (data == null)
             {
                 return NotFound();
             }
-            return Ok(data);         
+            return Ok(data);
         }
 
-        // GET api/<CantidadXEstadosController>/5
+        // GET api/<V_CantidadxEstadoUsuario>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public string GetDato(int id)
         {
             return "value";
         }
 
-        // POST api/<CantidadXEstadosController>
+        // POST api/<V_CantidadxEstadoUsuario>
         [HttpPost]
         public void Post([FromBody] string value)
         {
         }
 
-        // PUT api/<CantidadXEstadosController>/5
+        // PUT api/<V_CantidadxEstadoUsuario>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/<CantidadXEstadosController>/5
+        // DELETE api/<V_CantidadxEstadoUsuario>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

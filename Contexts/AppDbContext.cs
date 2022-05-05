@@ -30,7 +30,12 @@ namespace ApiRVM2019.Contexts
         public DbSet<ModeloVehiculo> ModeloVehiculo { get; set; }
         public DbSet<TipoVehiculo> TipoVehiculo { get; set; }
 
+        //Dashboard
         public DbSet<V_CantidadxEstado> V_CantidadxEstado {get; set;}
         public DbSet<Entities.Dashboard.V_TotalReclamosRealizados> V_TotalReclamosRealizados { get; set; }
+        public DbSet<Entities.Dashboard.V_CantidadxEstadoUsuario> V_CantidadxEstadoUsuario { get; set; }
+        public DbSet<Entities.Dashboard.V_CantidadTipReclamoUsuario> V_CantidadTipReclamoUsuario { get; set;}
+        public DbSet<Entities.Dashboard.V_CantidadRecAmbientalUsuario> V_CantidadRecAmbientalUsuario { get; set;}
+
     }
 }
