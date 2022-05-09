@@ -61,6 +61,7 @@ namespace ApiRVM2019.Controllers.ActualizarRecController
                                           Hora = reclamo.Hora,
                                           IDSesion = reclamo.ID_Sesion,
                                           ID_estadoRec = reclamo.ID_Estado,
+                                          ID_Estado=reclamo.ID_Estado,
                                           
                                           NombreMarca=MarcaVehiculo.Nombre,
 
