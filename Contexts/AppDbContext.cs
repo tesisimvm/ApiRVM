@@ -37,5 +37,11 @@ namespace ApiRVM2019.Contexts
         public DbSet<Entities.Dashboard.V_CantidadTipReclamoUsuario> V_CantidadTipReclamoUsuario { get; set;}
         public DbSet<Entities.Dashboard.V_CantidadRecAmbientalUsuario> V_CantidadRecAmbientalUsuario { get; set;}
 
+        public DbSet<Entities.Dashboard.V_CantidadRecPorMesyAnio> V_CantidadRecPorMesyAnio { get; set; }
+
+        public DbSet<Entities.Dashboard.V_TotalReclamosAdmin> V_TotalReclamosAdmin { get; set; }
+        public DbSet<Entities.Dashboard.V_TotalTipoReclamosAdmin> V_TotalTipoReclamosAdmin { get; set; }
+        public DbSet<Entities.Dashboard.V_TotalReclamosPorAnioAdmin> V_TotalReclamosPorAnioAdmin { get; set; }
+
     }
 }

@@ -16,6 +16,7 @@ namespace ApiRVM2019.Controllers.Dashboard
     [ApiController]
     public class V_TotalReclamosRealizados : ControllerBase
     {
+
         private readonly AppDbContext context;
 
         public V_TotalReclamosRealizados(AppDbContext context)
@@ -27,6 +28,7 @@ namespace ApiRVM2019.Controllers.Dashboard
         [HttpGet]
         public IActionResult Get()
         {
+            //no se esta utilizando
             var data = from V_TotalReclamosRealizados in context.V_TotalReclamosRealizados
                        
                        select V_TotalReclamosRealizados;
@@ -39,22 +41,24 @@ namespace ApiRVM2019.Controllers.Dashboard
         }
 
         // GET api/<V_TotalReclamosRealizadosController>/5
-        [HttpGet("{idUsuario}")]
-        public IActionResult Get(int idUsuario)
-        {
-            var data = from V_TotalReclamosRealizados in context.V_TotalReclamosRealizados
-                       where V_TotalReclamosRealizados.IDUsuario == idUsuario
-                       select new
-                       {
-                           name = "Cantidad Total de Reclamos",
-                           value = V_TotalReclamosRealizados.Cantidad
-                       };
+        [HttpGet("{idUsuario}/{idRol}")]
+        public IActionResult Get(int idUsuario,int idRol)
+        {           
+                var data = from V_TotalReclamosRealizados in context.V_TotalReclamosRealizados
+                           where V_TotalReclamosRealizados.IDUsuario == idUsuario
+                           select new
+                           {
+                               name = "Cantidad Total de Reclamos",
+                               value = V_TotalReclamosRealizados.Cantidad
+                           };
 
-            if (data == null)
-            {
-                return NotFound();
-            }
-            return Ok(data);
+                if (data == null)
+                {
+                    return NotFound();
+                }
+                return Ok(data);
+            
+           
         }
 
         // POST api/<V_TotalReclamosRealizadosController>
