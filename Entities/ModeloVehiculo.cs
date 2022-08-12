@@ -9,7 +9,6 @@ namespace ApiRVM2019.Entities
     public class ModeloVehiculo
     {
         [Key]
-
         public int IDModelo { get; set; }
         public string Nombre { get; set; }
     }
