@@ -55,8 +55,21 @@ namespace ApiRVM2019.Controllers.Configuracion
 
         // POST api/<EstadosAdminController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult PostEstado([FromBody] Estado objEstado)
         {
+            try
+            {
+                var PEstado = context.Estado.Add(objEstado);
+                context.SaveChanges();
+
+                //reclamo.IDReclamo = recl.Entity.IDReclamo;
+
+                return Ok(PEstado);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
 
         // PUT api/<EstadosAdminController>/5

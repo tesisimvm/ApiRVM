@@ -58,8 +58,21 @@ namespace ApiRVM2019.Controllers.Configuracion
 
         // POST api/<TipoEstadoController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult Post([FromBody] TipoEstado tipoEstado)
         {
+            try
+            {
+                var TipEstado = context.TipoEstado.Add(tipoEstado);
+                context.SaveChanges();
+
+                //reclamo.IDReclamo = recl.Entity.IDReclamo;
+
+                return Ok(TipEstado);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
 
         // PUT api/<TipoEstadoController>/5

@@ -10,7 +10,8 @@ namespace ApiRVM2019.Entities
     {
         [Key]
         public int IDEstado { get; set; }
+        public string Nombre { get; set; }
         public int ID_TipoEstado { get; set; }
-        public string Nombre{ get; set; }
+        
     }
 }
