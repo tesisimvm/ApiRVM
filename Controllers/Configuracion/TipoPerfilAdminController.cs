@@ -52,8 +52,21 @@ namespace ApiRVM2019.Controllers.Configuracion
 
         // POST api/<TipoPerfilAdminController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult PostEstado([FromBody] Perfil objPerfil)
         {
+            try
+            {
+                var PPerfil = context.Perfil.Add(objPerfil);
+                context.SaveChanges();
+
+                //reclamo.IDReclamo = recl.Entity.IDReclamo;
+
+                return Ok(PPerfil);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
 
         // PUT api/<TipoPerfilAdminController>/5
