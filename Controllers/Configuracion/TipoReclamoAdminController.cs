@@ -53,8 +53,21 @@ namespace ApiRVM2019.Controllers.Configuracion
 
         // POST api/<TipoReclamoAdminController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult PostTipoReclamo([FromBody] TipoReclamo objTipoReclamo)
         {
+            try
+            {
+                var tipReclamo = context.TipoReclamo.Add(objTipoReclamo);
+                context.SaveChanges();
+
+                //reclamo.IDReclamo = recl.Entity.IDReclamo;
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
 
         // PUT api/<TipoReclamoAdminController>/5

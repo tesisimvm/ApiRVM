@@ -52,7 +52,7 @@ namespace ApiRVM2019.Controllers.Configuracion
 
         // POST api/<TipoPerfilAdminController>
         [HttpPost]
-        public ActionResult PostEstado([FromBody] Perfil objPerfil)
+        public ActionResult PostTipoPerfil([FromBody] Perfil objPerfil)
         {
             try
             {
@@ -61,7 +61,7 @@ namespace ApiRVM2019.Controllers.Configuracion
 
                 //reclamo.IDReclamo = recl.Entity.IDReclamo;
 
-                return Ok(PPerfil);
+                return Ok();
             }
             catch (Exception ex)
             {

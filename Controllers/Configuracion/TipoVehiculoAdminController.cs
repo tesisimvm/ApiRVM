@@ -82,8 +82,21 @@ namespace ApiRVM2019.Controllers.Configuracion
 
         // POST api/<TipoVehiculoAdminController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult PostTipoVehiculo([FromBody] TipoVehiculo objTipoVehiculo)
         {
+            try
+            {
+                var tipVehiculo = context.TipoVehiculo.Add(objTipoVehiculo);
+                context.SaveChanges();
+
+                //reclamo.IDReclamo = recl.Entity.IDReclamo;
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
 
         // PUT api/<TipoVehiculoAdminController>/5

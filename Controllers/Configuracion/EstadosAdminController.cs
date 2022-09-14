@@ -64,7 +64,7 @@ namespace ApiRVM2019.Controllers.Configuracion
 
                 //reclamo.IDReclamo = recl.Entity.IDReclamo;
 
-                return Ok(PEstado);
+                return Ok();
             }
             catch (Exception ex)
             {
