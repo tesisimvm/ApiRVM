@@ -55,7 +55,8 @@ namespace ApiRVM2019.Controllers.FiltrosHistorialController
                                            IDRecAmb = ReclamoAmbiental.IDReclamoAmbiental,
                                            NombreRecAmbiental = ReclamoAmbiental.Nombre, //quema de arboles, unundaciones, etc
                                            Nick = usuario.Nick,
-                                           Foto = reclamo.Foto
+                                           Foto = reclamo.Foto,
+                                           dominio = DetalleReclamo.Dominio
                                        }).OrderByDescending(fecha => fecha.Fecha);
 
                     if (_DetReclamo == null)
@@ -90,7 +91,8 @@ namespace ApiRVM2019.Controllers.FiltrosHistorialController
                                            IDRecAmb = ReclamoAmbiental.IDReclamoAmbiental,
                                            NombreRecAmbiental = ReclamoAmbiental.Nombre, //quema de arboles, unundaciones, etc
                                            Nick = usuario.Nick,
-                                           Foto = reclamo.Foto
+                                           Foto = reclamo.Foto,
+                                           dominio = DetalleReclamo.Dominio
                                        }).OrderByDescending(fecha => fecha.Fecha);
 
 
@@ -128,7 +130,8 @@ namespace ApiRVM2019.Controllers.FiltrosHistorialController
                                            IDRecAmb = ReclamoAmbiental.IDReclamoAmbiental,
                                            NombreRecAmbiental = ReclamoAmbiental.Nombre, //quema de arboles, unundaciones, etc
                                            Nick = usuario.Nick,
-                                           Foto = reclamo.Foto
+                                           Foto = reclamo.Foto,
+                                           dominio = DetalleReclamo.Dominio
                                        }).OrderByDescending(fecha => fecha.Fecha);
 
 
@@ -164,7 +167,8 @@ namespace ApiRVM2019.Controllers.FiltrosHistorialController
                                            IDRecAmb = ReclamoAmbiental.IDReclamoAmbiental,
                                            NombreRecAmbiental = ReclamoAmbiental.Nombre, //quema de arboles, unundaciones, etc
                                            Nick = usuario.Nick,
-                                           Foto = reclamo.Foto
+                                           Foto = reclamo.Foto,
+                                           dominio = DetalleReclamo.Dominio
                                        }).OrderByDescending(fecha => fecha.Fecha);
 
 
@@ -208,7 +212,8 @@ namespace ApiRVM2019.Controllers.FiltrosHistorialController
                                            IDRecAmb = ReclamoAmbiental.IDReclamoAmbiental,
                                            NombreRecAmbiental = ReclamoAmbiental.Nombre, //quema de arboles, unundaciones, etc
                                            Nick = usuario.Nick,
-                                           Foto = reclamo.Foto
+                                           Foto = reclamo.Foto,
+                                           dominio = DetalleReclamo.Dominio
                                        }).OrderByDescending(fecha => fecha.Fecha);
 
                     if (_DetReclamo == null)
@@ -243,7 +248,8 @@ namespace ApiRVM2019.Controllers.FiltrosHistorialController
                                            IDRecAmb = ReclamoAmbiental.IDReclamoAmbiental,
                                            NombreRecAmbiental = ReclamoAmbiental.Nombre, //quema de arboles, unundaciones, etc
                                            Nick = usuario.Nick,
-                                           Foto = reclamo.Foto
+                                           Foto = reclamo.Foto,
+                                           dominio = DetalleReclamo.Dominio
                                        }).OrderByDescending(fecha => fecha.Fecha);
 
 

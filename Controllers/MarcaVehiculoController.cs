@@ -29,12 +29,12 @@ namespace ApiRVM2019.Controllers
         public IActionResult Get()
         {
             var _marcavehiculo = from MarcaVehiculo in context.MarcaVehiculo
-                                 join ModeloVehiculo in context.ModeloVehiculo on MarcaVehiculo.ID_Modelo equals ModeloVehiculo.IDModelo
+                                 
                             select new
                             {
                                 IDMarca = MarcaVehiculo.IDMarca,
-                                marcaVehiculo=MarcaVehiculo.Nombre,
-                                modeloVehiculo=ModeloVehiculo.Nombre
+                                marcaVehiculo=MarcaVehiculo.Nombre
+                               
                             };
             if (_marcavehiculo == null)
             {

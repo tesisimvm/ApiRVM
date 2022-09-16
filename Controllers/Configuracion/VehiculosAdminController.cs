@@ -68,8 +68,21 @@ namespace ApiRVM2019.Controllers.Configuracion
 
         // POST api/<VehiculosAdminController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult PostVehiculo([FromBody] Vehiculo objVehiculo)
         {
+            try
+            {
+                context.Vehiculo.Add(objVehiculo);
+                context.SaveChanges();
+
+                //reclamo.IDReclamo = recl.Entity.IDReclamo;
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
 
         // PUT api/<VehiculosAdminController>/5
