@@ -53,8 +53,18 @@ namespace ApiRVM2019.Controllers.Configuracion
 
         // POST api/<MarcaAdminController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult Post([FromBody] MarcaVehiculo marcaVehiculo)
         {
+            try
+            {
+                context.MarcaVehiculo.Add(marcaVehiculo);
+                context.SaveChanges();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
 
         // PUT api/<MarcaAdminController>/5

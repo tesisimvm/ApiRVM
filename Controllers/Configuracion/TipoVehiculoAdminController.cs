@@ -46,12 +46,12 @@ namespace ApiRVM2019.Controllers.Configuracion
         [HttpGet("{idTipoVehiculo}")]
         public IActionResult Get(int idTipoVehiculo)
         {
-
             //se buscan los tipos de vehiculos segun el que se haya seleccionado
             var dato = from Vehiculo in context.Vehiculo
                        join TipoVehiculo in context.TipoVehiculo on Vehiculo.ID_TipoVehiculo equals TipoVehiculo.IDTipoVehiculo
                        join MarcaVehiculo in context.MarcaVehiculo on Vehiculo.ID_MarcaVehiculo equals MarcaVehiculo.IDMarca
-                       join ModeloVehiculo in context.ModeloVehiculo on MarcaVehiculo.ID_Modelo equals ModeloVehiculo.IDModelo
+                       
+                       join ModeloVehiculo in context.ModeloVehiculo on Vehiculo.ID_Modelo equals ModeloVehiculo.IDModelo
                        join Estado in context.Estado on Vehiculo.ID_Estado equals Estado.IDEstado
                        where Vehiculo.ID_TipoVehiculo==idTipoVehiculo
                        select new
@@ -68,7 +68,7 @@ namespace ApiRVM2019.Controllers.Configuracion
 
                            nombreTipoVehiculo = TipoVehiculo.Nombre,
                            marcaAuto = MarcaVehiculo.Nombre,
-                           id_ModeloV = MarcaVehiculo.ID_Modelo,
+                           id_ModeloV = ModeloVehiculo.IDModelo,
                            nombreModelo = ModeloVehiculo.Nombre,
                            nombreEstado = Estado.Nombre,
                        };

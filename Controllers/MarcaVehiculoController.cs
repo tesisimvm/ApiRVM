@@ -70,7 +70,7 @@ namespace ApiRVM2019.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex);
             }
         }
 

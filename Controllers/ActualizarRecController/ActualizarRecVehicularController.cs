@@ -46,6 +46,7 @@ namespace ApiRVM2019.Controllers.ActualizarRecController
                                       join sesion in context.Sesion on reclamo.ID_Sesion equals sesion.IDSesion
                                       join usuario in context.Usuario on sesion.ID_Usuario equals usuario.IDUsuario
                                       join TipoReclamo in context.TipoReclamo on reclamo.ID_TipoReclamo equals TipoReclamo.IDTipoReclamo
+                                      join modelo in context.ModeloVehiculo on Vehiculo.ID_Modelo equals modelo.IDModelo
 
                                       where DetalleReclamo.IDDetalleReclamo == idDetalle
                                       //superconsulta como la del reclamo
@@ -61,17 +62,20 @@ namespace ApiRVM2019.Controllers.ActualizarRecController
                                           Hora = reclamo.Hora,
                                           IDSesion = reclamo.ID_Sesion,
                                           ID_estadoRec = reclamo.ID_Estado,
-                                          ID_Estado=reclamo.ID_Estado,
-                                          
-                                          NombreMarca=MarcaVehiculo.Nombre,
+                                          ID_Estado = reclamo.ID_Estado,
 
-                                          ID_Vehiculo=VehiculoXDetalleReclamo.ID_Vehiculo,
-                                          colorAuto=Vehiculo.Color,
-                                          numeroChasis=Vehiculo.NumeroChasis,
-                                          numeroMotor=Vehiculo.NumeroMotor,
+                                          NombreMarca = MarcaVehiculo.Nombre,
+
+                                          ID_Vehiculo = VehiculoXDetalleReclamo.ID_Vehiculo,
+                                          colorAuto = Vehiculo.Color,
+                                          numeroChasis = Vehiculo.NumeroChasis,
+                                          numeroMotor = Vehiculo.NumeroMotor,
                                           ID_marca = Vehiculo.ID_MarcaVehiculo,
                                           ID_EstadoVehiculo = estado.IDEstado,
                                           ID_Tipovehiculo = Vehiculo.ID_TipoVehiculo,
+                                          ID_Modelo = Vehiculo.ID_Modelo,
+                                          nombreModelo = modelo.Nombre,
+                                          
 
                                           EstadoVehiculo = estado.Nombre,
 

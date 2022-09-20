@@ -12,7 +12,7 @@ namespace ApiRVM2019.Entities
 
         public int IDMarca { get; set; }
         public  string Nombre { get; set; }
-        public int ID_Modelo { get; set; }
+        //public int ID_Modelo { get; set; }
 
     }
 }

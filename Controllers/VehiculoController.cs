@@ -30,7 +30,8 @@ namespace ApiRVM2019.Controllers
             var _vehiculo = from Vehiculo in context.Vehiculo
                           join TipoVehiculo in context.TipoVehiculo on Vehiculo.ID_TipoVehiculo equals TipoVehiculo.IDTipoVehiculo
                           join MarcaVehiculo in context.MarcaVehiculo on Vehiculo.ID_MarcaVehiculo equals MarcaVehiculo.IDMarca
-                          join ModeloVehiculo in context.ModeloVehiculo on MarcaVehiculo.ID_Modelo equals ModeloVehiculo.IDModelo
+                          
+                          join ModeloVehiculo in context.ModeloVehiculo on Vehiculo.ID_Modelo equals ModeloVehiculo.IDModelo
                           join Estado in context.Estado on Vehiculo.ID_Estado equals Estado.IDEstado
                           select new
                           {

@@ -33,13 +33,15 @@ namespace ApiRVM2019.Controllers.Configuracion
         // GET api/<VehiculosAdminController>/5
         [HttpGet("{idMarca}/{idModelo}")]
         public IActionResult getVehiculos(int idMarca, int idModelo)
-        {
+        { 
+            //configuracion - vehiculos
             var dato = from Vehiculo in context.Vehiculo
                        join TipoVehiculo in context.TipoVehiculo on Vehiculo.ID_TipoVehiculo equals TipoVehiculo.IDTipoVehiculo
                        join MarcaVehiculo in context.MarcaVehiculo on Vehiculo.ID_MarcaVehiculo equals MarcaVehiculo.IDMarca
-                       join ModeloVehiculo in context.ModeloVehiculo on MarcaVehiculo.ID_Modelo equals ModeloVehiculo.IDModelo
+                       
+                       join ModeloVehiculo in context.ModeloVehiculo on Vehiculo.ID_Modelo equals ModeloVehiculo.IDModelo
                        join Estado in context.Estado on Vehiculo.ID_Estado equals Estado.IDEstado
-                       where Vehiculo.ID_MarcaVehiculo==idMarca && MarcaVehiculo.ID_Modelo==idModelo
+                       where Vehiculo.ID_MarcaVehiculo==idMarca && ModeloVehiculo.IDModelo ==idModelo
                        select new
                        {
                            idVehiculo = Vehiculo.IDVehiculo,
@@ -54,7 +56,7 @@ namespace ApiRVM2019.Controllers.Configuracion
 
                            nombreTipoVehiculo = TipoVehiculo.Nombre,
                            marcaAuto = MarcaVehiculo.Nombre,
-                           id_ModeloV = MarcaVehiculo.ID_Modelo,
+                           id_ModeloV = ModeloVehiculo.IDModelo,
                            nombreModelo = ModeloVehiculo.Nombre,
                            nombreEstado = Estado.Nombre,
                        };

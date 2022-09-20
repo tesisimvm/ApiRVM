@@ -17,5 +17,6 @@ namespace ApiRVM2019.Entities
         public int ID_MarcaVehiculo { get; set; }
         public int ID_Estado { get; set; }
         public int ID_TipoVehiculo { get; set; }
+        public int ID_Modelo { get; set; }
     }
 }
