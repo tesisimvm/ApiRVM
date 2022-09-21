@@ -29,12 +29,12 @@ namespace ApiRVM2019.Controllers
         // GET: ModeloVehiculoController
         public IActionResult Get()
         {
-            var _modelovehiculo = from ModeloVehiculo in context.ModeloVehiculo
+            var _modelovehiculo = (from ModeloVehiculo in context.ModeloVehiculo
                                  select new
                                  {
                                      IDModelo =  ModeloVehiculo.IDModelo,
                                      modeloVehiculo =ModeloVehiculo.Nombre
-                                 };
+                                 }).OrderByDescending(id => id.IDModelo);
             if (_modelovehiculo == null)
             {
                 return NotFound();

@@ -35,13 +35,13 @@ namespace ApiRVM2019.Controllers.Configuracion
         [HttpGet("{idModelo}")]
         public IActionResult getModelo(int idModelo)
         {
-            var dato = from ModeloVehiculo in context.ModeloVehiculo
+            var dato = (from ModeloVehiculo in context.ModeloVehiculo
                        where ModeloVehiculo.IDModelo == idModelo
                        select new
                        {
                            idModelo = ModeloVehiculo.IDModelo,
                            nombre = ModeloVehiculo.Nombre,
-                       };
+                       }).OrderByDescending(ID => ID.idModelo);
 
             if (dato == null)
             {
