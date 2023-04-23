@@ -46,5 +46,9 @@ namespace ApiRVM2019.Contexts
 
         public DbSet<Entities.Dashboard.V_TotalRecAmbientalAdmin> V_TotalRecAmbientalAdmin { get; set; }
 
+        // Menu
+
+        public DbSet<Entities.Menu.V_rolUsuario> V_rolUsuario { get; set; }
+
     }
 }
